@@ -1,5 +1,5 @@
 # vue-smooth-picker
-:whale: A SmoothPicker for Vue 2
+🏄🏼 A SmoothPicker for Vue 2
 
 * Can be singleton
 * Programmable
