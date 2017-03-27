@@ -10,7 +10,7 @@
 
 ### Screenshot
 
-![screenshot](https://raw.githubusercontent.com/hiyali/awesome-vue-toast/master/assets/smooth-picker-screenshot.png "screenshot")
+![screenshot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/master/assets/smooth-picker-screenshot.png "screenshot")
 
 ## usage
 ```javascript
