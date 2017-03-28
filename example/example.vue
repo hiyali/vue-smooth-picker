@@ -65,5 +65,7 @@
   }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
+  body
+    background-color: #f0f0f0
 </style>

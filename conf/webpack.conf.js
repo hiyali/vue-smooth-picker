@@ -15,7 +15,7 @@ module.exports = {
     filename: '[name].js'
   }, exampleMode ? {} : {
     library: 'SmoothPicker',
-    libraryTarget: 'var'
+    libraryTarget: 'umd'
   }),
   resolve: {
     extensions: ['', '.js', '.vue'],
@@ -114,8 +114,8 @@ module.exports = {
         sequences     : true,  // join consecutive statemets with the “comma operator”
         properties    : true,  // optimize property access: a["foo"] → a.foo
         dead_code     : true,  // discard unreachable code
-        drop_debugger : true,  // discard “debugger” statements
-        drop_console  : true,  // discard “console” statements
+        drop_debugger : !exampleMode,  // discard “debugger” statements
+        drop_console  : !exampleMode,  // discard “console” statements
         unsafe        : true, // some unsafe optimizations (see below)
         conditionals  : true,  // optimize if-s and conditional expressions
         comparisons   : true,  // optimize comparisons
@@ -136,6 +136,6 @@ module.exports = {
         comments: exampleMode
       }
     }),
-    new ExtractTextPlugin('css/style.css')
+    new ExtractTextPlugin(exampleMode ? 'css/example.css' : 'css/style.css')
   ]
 }

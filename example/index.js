@@ -1,11 +1,11 @@
-import Example from './example'
 import Vue from 'vue'
 
-import SmoothPicker from 'smooth-picker'
+import SmoothPicker from '../dist/smooth-picker.js'
 Vue.use(SmoothPicker)
 
+import Example from './example'
 new Vue(
-  Object.assign({}, Example, { // app body
+  Object.assign({}, Example, {
     el: '#app'
   })
 )

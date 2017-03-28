@@ -1,9 +1,6 @@
 # vue-smooth-picker
 🏄🏼 A SmoothPicker for Vue 2
 
-* Can be singleton
-* Programmable
-
 ## Example
 
 [Live demo](https://hiyali.github.io/vue-smooth-picker)
@@ -14,42 +11,24 @@
 
 ## usage
 ```javascript
-import SmoothPicker from 'smooth-picker'
+import './path-to-smooth-picker/dist/css/style.css'
+import SmoothPicker from './path-to-smooth-picker/dist/smooth-picker.js'
+Vue.use(SmoothPicker)
 ...
-components: {
-  SmoothPicker
-}
-...
-<SmoothPicker :data="data" :change="change" />
-```
-
-### for singleton
-```html
-<head>
-  ...
-  <link rel="stylesheet" href="./smooth-picker/dist/css/style.css">
-</head>
-<body>
-  ...
-  <script src="./smooth-picker/dist/smooth-picker.js"></script>
-	// your code
-  ...
-</body>
-```
-
-## with some option
-```javascript
+// in your template
 <smooth-picker :data="data" :change="change" />
 ```
 
-| option         | type       |  default      | other value    |
+## props
+
+| name           | type       |  default      | other value  |
 | :------------- | :--------- | :------------ | :----------- |
 | `data`         | `Array`    | []            |              |
-| `change`       | `Function` |               | Callback after data current index changed |
+| `change`       | `Function` | () => {}      | Callback after data current index changed |
 
 ## Development / build / exmaple
 ```shell
 npm run dev # development
 npm run build # build
-npm run example # build example file
+npm run example # build example files
 ```
