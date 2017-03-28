@@ -21,11 +21,14 @@
             className: 'big-some'
           },
           {
-            divider: true,
-            flex: 1,
-            text: '-',
+            currentIndex: 5,
+            flex: 3,
+            list: [
+              '10排', '11排', '13排', '15排'
+            ],
+            onClick: this.clickSmall,
             textAlign: 'center',
-            className: 'divider'
+            className: 'small-some'
           },
           {
             currentIndex: 5,
@@ -69,4 +72,7 @@
 <style lang="stylus">
   body
     background-color: #f0f0f0
+  .example-page
+    background-color: white
+    padding: 5px 0
 </style>
