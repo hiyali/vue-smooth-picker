@@ -4,7 +4,8 @@
 ## Example
 
 [Live demo](https://hiyali.github.io/vue-smooth-picker)
-[Example code](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/master/example/example.vue)
+
+[Example code](https://github.com/hiyali/vue-smooth-picker/blob/master/example/example.vue)
 
 ### Screenshot
 
