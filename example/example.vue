@@ -14,7 +14,7 @@
             currentIndex: 0,
             flex: 3,
             list: [
-              'A', 'B', { id: 2, value: 'val A' }, 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B'
+              'A区', 'B区', 'C区'
             ],
             onClick: this.clickBig,
             textAlign: 'center',
@@ -23,7 +23,7 @@
           {
             divider: true,
             flex: 1,
-            text: 'row',
+            text: '-',
             textAlign: 'center',
             className: 'divider'
           },
@@ -31,7 +31,7 @@
             currentIndex: 5,
             flex: 3,
             list: [
-              'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'
+              '1', '2', '3', '4', '5', '6', '7', '8'
             ],
             onClick: this.clickSmall,
             textAlign: 'center',
@@ -46,11 +46,12 @@
         if (listIndex === 0) {
           let currentIndex = 0
           let list = []
-          if (this.data[listIndex].list[index] === 'B') {
-            list = ['c', 'd', 'c', 'd', 'c', 'd', 'c', 'd', 'c', 'd', 'c', 'd', 'c', 'd', 'c']
-            currentIndex = 5
+          if (this.data[listIndex].list[index] === 'B区') {
+            list = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+            currentIndex = 4
           } else {
-            list = ['a']
+            list = ['10', '11', '12', '13', '14']
+            currentIndex = 2
           }
           this.$refs.smoothPicker.setGroupData(2, Object.assign({}, this.data[2], { currentIndex, list }))
         }
