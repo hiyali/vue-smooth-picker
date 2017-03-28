@@ -5,13 +5,12 @@
 
 [Live demo](https://hiyali.github.io/vue-smooth-picker)
 
-[Example code](https://github.com/hiyali/vue-smooth-picker/blob/master/example/example.vue)
-
 ### Screenshot
 
 ![screenshot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/master/assets/smooth-picker-screenshot.png "screenshot")
 
 ## usage
+
 ```javascript
 import './path-to-smooth-picker/dist/css/style.css'
 import SmoothPicker from './path-to-smooth-picker/dist/smooth-picker.js'
@@ -20,6 +19,8 @@ Vue.use(SmoothPicker)
 // in your template
 <smooth-picker ref="smoothPicker" :data="data" :change="change" />
 ```
+
+[Example code](https://github.com/hiyali/vue-smooth-picker/blob/master/example/example.vue)
 
 ## props
 
@@ -37,12 +38,19 @@ Vue.use(SmoothPicker)
 | `data[i].text`             | `String`   | -             | Just used when `divider` is true |
 | `change`                   | `Function` | (gIndex, iIndex) => {} | Callback after data current index changed, pass two arguments, group index `gIndex` and item index `iIndex` |
 
+## instance methods
+
+| name                       | type       | explain                          |
+| :------------------------- | :--------- | :------------------------------- |
+| `setGroupData`             | `Function` | Could use this method dynamically set a group data |
+
 ```javascript
-// You can dynamically set the group data with setGroupData(gIndex, groupData) function
-this.$refs.smoothPicker.setGroupData(2, Object.assign({}, this.data[2], { currentIndex, list }))
+let currentIndex = 0, list = ['Some values', '..']
+this.$refs.smoothPicker.setGroupData(2, { currentIndex, list })
 ```
 
 ## Development / build / exmaple
+
 ```shell
 npm run dev # development
 npm run build # build
