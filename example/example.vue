@@ -14,7 +14,7 @@
             currentIndex: 0,
             flex: 3,
             list: [
-              'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B'
+              'A', 'B', { id: 2, value: 'val A' }, 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B'
             ],
             onClick: this.clickBig,
             textAlign: 'center',
