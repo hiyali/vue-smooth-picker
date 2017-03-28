@@ -9,11 +9,17 @@
 
 ![screenshot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/master/assets/smooth-picker-screenshot.png "screenshot")
 
+## install
+
+```shell
+npm i --save vue-smooth-picker
+```
+
 ## usage
 
 ```javascript
-import './path-to-smooth-picker/dist/css/style.css'
-import SmoothPicker from './path-to-smooth-picker/dist/smooth-picker.js'
+import 'vue-smooth-picker/dist/css/style.css'
+import SmoothPicker from 'vue-smooth-picker'
 Vue.use(SmoothPicker)
 ...
 // in your template
