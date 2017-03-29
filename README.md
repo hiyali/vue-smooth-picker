@@ -1,6 +1,8 @@
 # vue-smooth-picker
 🏄🏼 A SmoothPicker for Vue 2
 
+[![npm package](https://img.shields.io/npm/v/vue-smooth-picker.svg)](https://www.npmjs.com/package/vue-smooth-picker)
+
 ## Example
 
 [Live demo](https://hiyali.github.io/vue-smooth-picker)
