@@ -14,21 +14,18 @@
             currentIndex: 0,
             flex: 3,
             list: [
-              'A区', 'B区', 'C区'
+              'AA', 'BB', 'CC'
             ],
-            onClick: this.clickBig,
+            onClick: this.clickRow,
             textAlign: 'center',
-            className: 'big-some'
+            className: 'row-group'
           },
           {
-            currentIndex: 5,
-            flex: 3,
-            list: [
-              '10排', '11排', '13排', '15排'
-            ],
-            onClick: this.clickSmall,
+            divider: true,
+            flex: 1,
+            text: 'row',
             textAlign: 'center',
-            className: 'small-some'
+            className: 'divider'
           },
           {
             currentIndex: 5,
@@ -36,20 +33,20 @@
             list: [
               '1', '2', '3', '4', '5', '6', '7', '8'
             ],
-            onClick: this.clickSmall,
+            onClick: this.clickItem,
             textAlign: 'center',
-            className: 'small-some'
+            className: 'item-group'
           }
         ]
       }
     },
     methods: {
-      dataChange (listIndex, index) {
-        console.info('list', listIndex, index)
-        if (listIndex === 0) {
+      dataChange (gIndex, iIndex) {
+        console.info('list', gIndex, iIndex)
+        if (gIndex === 0) {
           let currentIndex = 0
           let list = []
-          if (this.data[listIndex].list[index] === 'B区') {
+          if (this.data[gIndex].list[iIndex] === 'BB') {
             list = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
             currentIndex = 4
           } else {
@@ -59,11 +56,11 @@
           this.$refs.smoothPicker.setGroupData(2, Object.assign({}, this.data[2], { currentIndex, list }))
         }
       },
-      clickBig (index, item) {
-        console.info('big', index, item)
+      clickRow (gIndex, iIndex) {
+        console.info('row', gIndex, iIndex)
       },
-      clickSmall (index, item) {
-        console.info('small', index, item)
+      clickItem (gIndex, iIndex) {
+        console.info('item', gIndex, iIndex)
       }
     }
   }
@@ -72,7 +69,4 @@
 <style lang="stylus">
   body
     background-color: #f0f0f0
-  .example-page
-    background-color: white
-    padding: 5px 0
 </style>
