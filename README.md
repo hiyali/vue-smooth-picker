@@ -1,6 +1,8 @@
 # vue-smooth-picker
 🏄🏼 A SmoothPicker for Vue 2
 
+[![npm package](https://img.shields.io/npm/v/vue-smooth-picker.svg)](https://www.npmjs.com/package/vue-smooth-picker) [![travis build](https://img.shields.io/travis/hiyali/vue-smooth-picker/master.svg)](https://travis-ci.org/hiyali/vue-smooth-picker) [![CircleCI Status](https://circleci.com/gh/hiyali/vue-smooth-picker.svg?style=shield)](https://circleci.com/gh/hiyali/vue-smooth-picker)
+
 ## Example
 
 [Live demo](https://hiyali.github.io/vue-smooth-picker)
@@ -9,11 +11,17 @@
 
 ![screenshot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/master/assets/smooth-picker-screenshot.png "screenshot")
 
+## install
+
+```shell
+npm i --save vue-smooth-picker
+```
+
 ## usage
 
 ```javascript
-import './path-to-smooth-picker/dist/css/style.css'
-import SmoothPicker from './path-to-smooth-picker/dist/smooth-picker.js'
+import 'vue-smooth-picker/dist/css/style.css'
+import SmoothPicker from 'vue-smooth-picker'
 Vue.use(SmoothPicker)
 ...
 // in your template

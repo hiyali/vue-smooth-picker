@@ -81,7 +81,6 @@
       },
       eventsRegister () {
         const handleEventLayer = this.$refs.smoothHandleLayer
-        // global.logger.info(handleEventLayer)
         if (handleEventLayer) {
           this.addEventsForElement(handleEventLayer)
         }
@@ -100,26 +99,19 @@
         })
       },
       triggerMiddleLayerGroupClick (gIndex) {
-        // global.logger.log('group click ', gIndex)
         const data = this.data
         if (typeof gIndex === 'number' && typeof data[gIndex].onClick === 'function') {
           data[gIndex].onClick(gIndex, this.currentIndexList[gIndex])
         }
       },
       triggerAboveLayerClick (ev, gIndex) {
-        // global.logger.log('above layer click')
-
         this.forceUpdateCurrentIndex(gIndex, this.currentIndexList[gIndex] + 1)
         this.correctionCurrentIndex(ev, gIndex)
       },
       triggerMiddleLayerClick (ev, gIndex) {
-        // global.logger.log('middle layer click')
-
         this.triggerMiddleLayerGroupClick(gIndex)
       },
       triggerBelowLayerClick (ev, gIndex) {
-        // global.logger.log('below layer click')
-
         this.forceUpdateCurrentIndex(gIndex, this.currentIndexList[gIndex] - 1)
         this.correctionCurrentIndex(ev, gIndex)
       },
@@ -138,8 +130,6 @@
         return null
       },
       handleEventClick (ev) {
-        // global.logger.info('event click', ev)
-
         // FIXME: optimize these
         const gIndex = this.getGroupIndexBelongsEvent(ev)
 
@@ -165,7 +155,6 @@
         if (!this.touchOrMouse.isTouchable) {
           this.touchOrMouse.isMouseDown = true
         }
-        // global.logger.info('start', ev)
       },
       handleMove (ev) {
         ev.preventDefault()
@@ -180,7 +169,6 @@
         ev.preventDefault()
         ev.stopPropagation()
 
-        // global.logger.info('end', ev)
         if (!this.draggingInfo.isDragging) {
           this.handleEventClick(ev)
         }
@@ -192,8 +180,6 @@
       handleCancel (ev) {
         ev.preventDefault()
         ev.stopPropagation()
-
-        // global.logger.info('cancel', ev)
 
         if (this.touchOrMouse.isTouchable || this.touchOrMouse.isMouseDown) {
           this.correctionAfterDragging(ev)
@@ -216,8 +202,6 @@
         if (typeof gIndex === 'number' && (this.data[gIndex].divider || !this.data[gIndex].list)) {
           return
         }
-
-        // global.logger.info('move pageY', touchInfo.pageY, 'start pageY', this.draggingInfo.startPageY, ' drag group', gIndex)
 
         const moveCount = (this.draggingInfo.startPageY - touchInfo.pageY) / 32
         const movedIndex = this.currentIndexList[gIndex] + moveCount
@@ -304,9 +288,7 @@
       height: 100px
       position: relative
 
-
       top: r($smoothPickerHeight / 2 - $smoothMiddleLayerHeight / 2) // half of picker height - half of item height
-      // max-width: 54px // FIXME: automatic
     .smooth-item
       position: absolute
       top: 0
@@ -321,7 +303,6 @@
 
       will-change: transform
       contain: strict
-
 
       height: 2rem
       line-height: 2
@@ -358,4 +339,5 @@
     for n in 1..12
       .flex-{n}
         flex: n
+
 </style>
