@@ -254,7 +254,7 @@
         if (Math.abs(gapCount) < 4) {
           let rotateStyle = 'transform: rotateX(' + gapCount * 23 + 'deg) translate3d(0px, 0px, 90px);'
           if (!this.draggingInfo.isDragging) {
-            rotateStyle += ' transition-duration: 100ms;'
+            rotateStyle += ' transition: transform 150ms ease-out;'
           }
           return rotateStyle
         }
