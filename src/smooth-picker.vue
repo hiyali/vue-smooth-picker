@@ -252,16 +252,16 @@
       getItemStyle (gIndex, iIndex) {
         const gapCount = this.currentIndexList[gIndex] - iIndex
         if (Math.abs(gapCount) < 4) {
-          let rotateStyle = 'transform: rotateX(' + gapCount * 23 + 'deg) translate3d(0px, 0px, 90px);'
+          let rotateStyle = 'transform: rotateX(' + gapCount * 23 + 'deg) translate3d(0, 0, 5rem);'
           if (!this.draggingInfo.isDragging) {
             rotateStyle += ' transition: transform 150ms ease-out;'
           }
           return rotateStyle
         }
         if (gapCount > 0) {
-          return 'transform: rotateX(100deg) translate3d(0px, 0px, 90px)'
+          return 'transform: rotateX(100deg) translate3d(0, 0, 5rem)'
         } else {
-          return 'transform: rotateX(-100deg) translate3d(0px, 0px, 90px)'
+          return 'transform: rotateX(-100deg) translate3d(0, 0, 5rem)'
         }
       }
     }
@@ -273,8 +273,8 @@
   r(val)
     (val / 16) * 1rem
 
-  $smoothPickerHeight = 160 // px
-  $smoothMiddleLayerHeight = 32 // px
+  $smoothPickerHeight = 160
+  $smoothMiddleLayerHeight = 32
 
   .smooth-picker
     height: r($smoothPickerHeight)
@@ -285,7 +285,7 @@
     .smooth-group
       //
     .smooth-list
-      height: 100px
+      height: r(100)
       position: relative
 
       top: r($smoothPickerHeight / 2 - $smoothMiddleLayerHeight / 2) // half of picker height - half of item height
@@ -320,13 +320,13 @@
       .smooth-above
         border-bottom: 1px solid #c8c7cc
         background: linear-gradient(to bottom, white 10%, rgba(255, 255, 255, 0.7) 100%)
-        transform: translate3d(0, 0, 90px)
+        transform: translate3d(0, 0, 5rem)
       .smooth-middle
         height: r($smoothMiddleLayerHeight)
       .smooth-below
         border-top: 1px solid #c8c7cc
         background: linear-gradient(to top, white 10%, rgba(255, 255, 255, 0.7) 100%)
-        transform: translate3d(0, 0, 90px)
+        transform: translate3d(0, 0, 5rem)
 
   /* flex system */
   .flex-box
