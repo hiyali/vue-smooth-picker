@@ -14,7 +14,7 @@
 ## install
 
 ```shell
-npm i --save vue-smooth-picker
+npm i -S vue-smooth-picker
 ```
 
 ## usage
