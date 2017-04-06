@@ -1,6 +1,6 @@
 {
   "name": "vue-smooth-picker",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "vue2 smooth picker like datetime picker",
   "main": "dist/smooth-picker.js",
   "scripts": {
