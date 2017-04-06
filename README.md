@@ -44,7 +44,7 @@ and [example.vue](https://github.com/hiyali/vue-smooth-picker/blob/master/exampl
 | `data[i].flex`             | `Number`   | 1             | Group weights in parent width `1..12` |
 | `data[i].list`             | `Array`    | -             | List of the group                |
 | `data[i].list[j]`          | `String` or `Object` | -   | Item in the list of group, use `value` key when it is a object item |
-| `data[i].onClick`          | `Function` | -             | Click event on the middle layer of this group |
+| `data[i].onClick`          | `Function` | -             | Click event on the middle layer of this group, pass two arguments, this group index `gIndex` and selected index `iIndex` of this group |
 | `data[i].textAlign`        | `String`   | -             | `left` `center` or `right` in item block |
 | `data[i].className`        | `String`   | -             | Your custom class name for this group |
 | `data[i].divider`          | `Boolean`  | false         | If it is true, then `onClick` `list` `currentIndex` will be not used |
@@ -54,8 +54,8 @@ and [example.vue](https://github.com/hiyali/vue-smooth-picker/blob/master/exampl
 
 | name                       | type       | explain                          |
 | :------------------------- | :--------- | :------------------------------- |
-| `setGroupData`             | `Function` | Dynamically set a group data     |
-| `getCurrentIndexList`      | `Function` | Dynamically get the groups current index list (divider current index is 0) |
+| `setGroupData`             | `Function` | Dynamically set a group data, you can call this function with two arguments `(gIndex, gData)`, group index and group data see props `data[i]` |
+| `getCurrentIndexList`      | `Function` | Dynamically get the groups current index `Array` list (divider current index is 0) |
 
 ## For customization
 
