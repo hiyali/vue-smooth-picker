@@ -3,7 +3,7 @@
 
     <!-- smooth-group-layer -->
     <div ref="smoothGroup" v-for="(group, gIndex) in data" :key="gIndex"
-      class="smooth-group" :class="group.className + (group.flex ? ' flex-' + group.flex : 1)"
+      class="smooth-group" :class="group.className + ' flex-' + (group.flex || 1)"
       >
 
       <div class="smooth-list">
