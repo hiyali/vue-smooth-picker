@@ -30,7 +30,7 @@ Vue.use(SmoothPicker)
 
 [Example code](https://github.com/hiyali/vue-smooth-picker/blob/master/example/example.vue)
 
-## SmoothPicker props
+## props
 
 | name                       | type       |  default      | explain                          |
 | :------------------------- | :--------- | :------------ | :------------------------------- |
