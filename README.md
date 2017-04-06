@@ -31,6 +31,7 @@ Vue.use(SmoothPicker)
 
 #### Example code
 ... import ...
+
 and [example.vue](https://github.com/hiyali/vue-smooth-picker/blob/master/example/example.vue)
 
 ## props
@@ -55,11 +56,6 @@ and [example.vue](https://github.com/hiyali/vue-smooth-picker/blob/master/exampl
 | :------------------------- | :--------- | :------------------------------- |
 | `setGroupData`             | `Function` | Dynamically set a group data     |
 | `getCurrentIndexList`      | `Function` | Dynamically get the groups current index list (divider current index is 0) |
-
-```javascript
-let currentIndex = 0, list = ['Some values', '..']
-this.$refs.smoothPicker.setGroupData(2, { currentIndex, list })
-```
 
 ## For customization
 
