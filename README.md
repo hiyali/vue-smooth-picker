@@ -51,7 +51,7 @@ Vue.use(SmoothPicker)
 | name                       | type       | explain                          |
 | :------------------------- | :--------- | :------------------------------- |
 | `setGroupData`             | `Function` | Dynamically set a group data     |
-| `getCurrentIndexList`      | `Function` | Dynamically get a current index list (divider current index is 0) |
+| `getCurrentIndexList`      | `Function` | Dynamically get the groups current index list (divider current index is 0) |
 
 ```javascript
 let currentIndex = 0, list = ['Some values', '..']
