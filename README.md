@@ -3,7 +3,7 @@
 
 [![npm package](https://img.shields.io/npm/v/vue-smooth-picker.svg)](https://www.npmjs.com/package/vue-smooth-picker) [![travis build](https://img.shields.io/travis/hiyali/vue-smooth-picker/master.svg)](https://travis-ci.org/hiyali/vue-smooth-picker) [![CircleCI Status](https://circleci.com/gh/hiyali/vue-smooth-picker.svg?style=shield)](https://circleci.com/gh/hiyali/vue-smooth-picker)
 
-## Example
+## Take a look
 
 [Live demo](https://hiyali.github.io/vue-smooth-picker)
 
@@ -20,6 +20,7 @@ npm i -S vue-smooth-picker
 ## Usage
 
 ```javascript
+// import and use
 import 'vue-smooth-picker/dist/css/style.css'
 import SmoothPicker from 'vue-smooth-picker'
 Vue.use(SmoothPicker)
@@ -28,7 +29,9 @@ Vue.use(SmoothPicker)
 <smooth-picker ref="smoothPicker" :data="data" :change="change" />
 ```
 
-[Example code](https://github.com/hiyali/vue-smooth-picker/blob/master/example/example.vue)
+#### Example code
+... import ...
+and [example.vue](https://github.com/hiyali/vue-smooth-picker/blob/master/example/example.vue)
 
 ## props
 
