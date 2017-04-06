@@ -54,8 +54,8 @@ and [example.vue](https://github.com/hiyali/vue-smooth-picker/blob/master/exampl
 
 | name                       | type       | explain                          |
 | :------------------------- | :--------- | :------------------------------- |
-| `setGroupData`             | `Function` | Dynamically set a group data, you can call this function with two arguments `(gIndex, gData)`, group index and group data see props `data[i]` |
-| `getCurrentIndexList`      | `Function` | Dynamically get the groups current index `Array` list (divider current index is 0) |
+| `setGroupData`             | `Function` | Dynamically set a group data with two arguments `(gIndex, gData)`, group index and group data (see props `data[i]`) |
+| `getCurrentIndexList`      | `Function` | Return a `Array` of the groups current index list (has divider current index, and it is default to `0`) |
 
 ## For customization
 
