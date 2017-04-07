@@ -315,11 +315,11 @@
     .smooth-handle-layer
       position: absolute
       width: 100%
-      height: 100%
+      height: calc(100% + 2px)
       left: 0
       right: 0
-      top: 0
-      bottom: 0
+      top: -1px
+      bottom: -1px
       .smooth-above
         border-bottom: 1px solid #c8c7cc
         background: linear-gradient(to bottom, white 10%, rgba(255, 255, 255, 0.7) 100%)
