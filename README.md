@@ -138,3 +138,6 @@ npm run dev # development
 npm run build # build
 npm run example # develop example files
 ```
+
+## Donate
+[A github star](https://github.com/hiyali/vue-smooth-picker)
