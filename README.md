@@ -39,7 +39,7 @@ Vue.use(SmoothPicker)
 
 <script>
   import 'vue-smooth-picker/dist/css/style.css'
-  import SmoothPicker from 'vue-smooth-picker'
+  import { SmoothPicker } from 'vue-smooth-picker'
 
   export default {
     name: 'example-page',
