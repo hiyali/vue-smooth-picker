@@ -44,7 +44,7 @@
     },
     data () {
       return {
-        currentIndexList: this.getCurrentIndexList(),
+        currentIndexList: this.getInitialCurrentIndexList(),
         groupsRectList: new Array(this.data.length),
         touchOrMouse: {
           isTouchable: 'ontouchstart' in window,
@@ -240,7 +240,7 @@
         }
         return false
       },
-      getCurrentIndexList () {
+      getInitialCurrentIndexList () {
         return this.data.map(function (item, index) {
           const iCI = item.currentIndex
           if (typeof iCI === 'number' && iCI >= 0 && item.list && item.list.length && iCI <= item.list.length - 1) {
@@ -248,6 +248,9 @@
           }
           return 0
         })
+      },
+      getCurrentIndexList () {
+        return this.currentIndexList
       },
       getItemStyle (gIndex, iIndex) {
         const gapCount = this.currentIndexList[gIndex] - iIndex
