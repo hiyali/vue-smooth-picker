@@ -34,6 +34,7 @@ Vue.use(SmoothPicker)
 <template>
   <div class="example-page">
     <smooth-picker ref="smoothPicker" :data="data" :change="dataChange" />
+    <button class="button" type="button" @click="confirm">Confirm</button>
   </div>
 </template>
 
@@ -53,26 +54,26 @@ Vue.use(SmoothPicker)
             currentIndex: 0,
             flex: 3,
             list: [
-              'AA', 'BB', 'CC'
+              'Plan A - free', 'Plan B - $50', 'Plan C - $100'
             ],
-            onClick: this.clickRow,
+            onClick: this.clickOnPlan,
             textAlign: 'center',
             className: 'row-group'
           },
           {
             divider: true,
             flex: 1,
-            text: 'row',
+            text: 'product',
             textAlign: 'center',
             className: 'divider'
           },
           {
-            currentIndex: 5,
+            currentIndex: 2,
             flex: 3,
             list: [
-              '1', '2', '3', '4', '5', '6', '7', '8'
+              '1 * A item', '2 * A items', '3 * A items', '4 * A items', '5 * A items'
             ],
-            onClick: this.clickItem,
+            onClick: this.clickOnProduct,
             textAlign: 'center',
             className: 'item-group'
           }
@@ -85,21 +86,37 @@ Vue.use(SmoothPicker)
         if (gIndex === 0) {
           let currentIndex = 0
           let list = []
-          if (this.data[gIndex].list[iIndex] === 'BB') {
-            list = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-            currentIndex = 4
-          } else {
-            list = ['10', '11', '12', '13', '14']
-            currentIndex = 2
+          switch (iIndex) {
+            case 2:
+              list = ['C item 1', 'C item 2', 'C item 3', 'C item 4', 'C item 5', 'C item 6', 'C item 7', 'C item 8', 'C item 9']
+              currentIndex = 4
+              break
+            case 1:
+              list = ['1 * B item', '2 * B items', '3 * B items', '4 * B items', '5 * B items', '6 * B items', '7 * B items']
+              currentIndex = 3
+              break
+            default:
+              list = ['1 * A item', '2 * A items', '3 * A items', '4 * A items', '5 * A items']
+              currentIndex = 2
           }
           this.$refs.smoothPicker.setGroupData(2, Object.assign({}, this.data[2], { currentIndex, list }))
         }
       },
-      clickRow (gIndex, iIndex) {
-        console.info('row', gIndex, iIndex)
+      clickOnPlan (gIndex, iIndex) {
+        window.alert('Clicked plan: ' + this.data[gIndex].list[iIndex])
       },
-      clickItem (gIndex, iIndex) {
-        console.info('item', gIndex, iIndex)
+      clickOnProduct (gIndex, iIndex) {
+        window.alert('Clicked product: ' + this.data[gIndex].list[iIndex])
+      },
+      confirm () {
+        const ciList = this.$refs.smoothPicker.getCurrentIndexList()
+        const planDetail = this.data[0].list[ciList[0]]
+        const productDetail = this.data[2].list[ciList[2]]
+        window.alert(
+          'Confirmed index list: ' + ciList + '.\n' +
+          'Confirmed plan: ' + planDetail + '.\n' +
+          'Confirmed product: ' + productDetail
+        )
       }
     }
   }
