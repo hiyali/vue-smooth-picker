@@ -2,23 +2,20 @@
   <div class="smooth-picker flex-box">
 
     <!-- smooth-group-layer -->
-    <div ref="smoothGroup" v-for="(group, gIndex) in data" :key="gIndex"
-      class="smooth-group" :class="group.className + ' flex-' + (group.flex || 1)"
-      >
+    <div ref="smoothGroup" v-for="(group, gIndex) in data" :key="gIndex" class="smooth-group" :class="getGroupClass(gIndex)">
 
       <div class="smooth-list">
-        <div v-if="group.divider" class="smooth-item divider" :class="group.textAlign ? 'text-' + group.textAlign : ''">{{ group.text }}</div>
+        <div v-if="group.divider" class="smooth-item divider" :class="getItemClass(gIndex, iIndex, true)">{{ group.text }}</div>
 
         <div v-else v-for="(item, iIndex) in group.list" :key="iIndex"
-          class="smooth-item" :class="(isCurrentItem(gIndex, iIndex) ? 'smooth-item-selected ' : '') + (group.textAlign ? 'text-' + group.textAlign : '')"
-          :style="getItemStyle(gIndex, iIndex)">
+          class="smooth-item" :class="getItemClass(gIndex, iIndex)" :style="getItemStyle(gIndex, iIndex)">
           {{ item.value || item }}
         </div>
       </div>
 
     </div>
 
-    <div class="smooth-handle-layer flex-box direction-column" ref="smoothHandleLayer">
+    <div ref="smoothHandleLayer" class="smooth-handle-layer flex-box direction-column">
       <div data-type="above" class="smooth-above flex-1"></div>
       <div data-type="middle" class="smooth-middle"></div>
       <div data-type="below" class="smooth-below flex-1"></div>
@@ -37,9 +34,7 @@
       },
       change: {
         type: Function,
-        default: function () {
-
-        }
+        default: () => {}
       }
     },
     data () {
@@ -60,7 +55,7 @@
     mounted () {
       this.eventsRegister()
 
-      this.getGroupsRectList() // FIXME: if data changed , it is wrong rects when group changed ?
+      this.getGroupsRectList() // FIXME: it is wrong rects when group changed ?
     },
     methods: {
       setGroupData (gIndex, groupData) {
@@ -71,6 +66,15 @@
           movedIndex = Math.round(iCI)
         }
         this.currentIndexList[gIndex] = movedIndex
+      },
+      getInitialCurrentIndexList () {
+        return this.data.map(function (item, index) {
+          const iCI = item.currentIndex
+          if (typeof iCI === 'number' && iCI >= 0 && item.list && item.list.length && iCI <= item.list.length - 1) {
+            return Math.round(iCI)
+          }
+          return 0
+        })
       },
       getGroupsRectList () {
         if (this.$refs.smoothGroup) {
@@ -130,7 +134,6 @@
         return null
       },
       handleEventClick (ev) {
-        // FIXME: optimize these
         const gIndex = this.getGroupIndexBelongsEvent(ev)
 
         switch (ev.target.dataset.type) {
@@ -235,22 +238,30 @@
         }.bind(this), 100)
       },
       isCurrentItem (gIndex, iIndex) {
-        if (this.currentIndexList && this.currentIndexList.length > gIndex) {
-          return this.currentIndexList[gIndex] === iIndex
-        }
-        return false
-      },
-      getInitialCurrentIndexList () {
-        return this.data.map(function (item, index) {
-          const iCI = item.currentIndex
-          if (typeof iCI === 'number' && iCI >= 0 && item.list && item.list.length && iCI <= item.list.length - 1) {
-            return Math.round(iCI)
-          }
-          return 0
-        })
+        return this.currentIndexList[gIndex] === iIndex
       },
       getCurrentIndexList () {
         return this.currentIndexList
+      },
+      getGroupClass (gIndex) {
+        const group = this.data[gIndex]
+        const defaultFlexClass = 'flex-' + (group.flex || 1)
+        const groupClass = [defaultFlexClass]
+        if (group.className) {
+          groupClass.push(group.className)
+        }
+        return groupClass
+      },
+      getItemClass (gIndex, iIndex, isDevider = false) {
+        const itemClass = []
+        const group = this.data[gIndex]
+        if (group.textAlign) {
+          itemClass.push('text-' + group.textAlign)
+        }
+        if (!isDevider && this.isCurrentItem(gIndex, iIndex)) {
+          itemClass.push('smooth-item-selected')
+        }
+        return itemClass
       },
       getItemStyle (gIndex, iIndex) {
         const gapCount = this.currentIndexList[gIndex] - iIndex
