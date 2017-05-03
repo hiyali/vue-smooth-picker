@@ -233,7 +233,7 @@
             this.$set(this.currentIndexList, gIndex, movedIndex)
             this.change(gIndex, movedIndex)
           }
-        }, 150)
+        }, 100)
       },
       isCurrentItem (gIndex, iIndex) {
         return this.currentIndexList[gIndex] === iIndex
