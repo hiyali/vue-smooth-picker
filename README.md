@@ -10,7 +10,7 @@
 
 [![NPM Description](https://nodei.co/npm/vue-smooth-picker.png?downloads=true&stars=true)](https://npmjs.org/package/vue-smooth-picker)
 
-> A SmoothPicker for Vue 2, it looks like iOS native datetime picker. If you want to a component when your user need to select some option / date / time / other etc. You can use this.
+> Let's make easier that select some data like date / time / cities / sex / seat number / ...
 
 ## Take a look
 
@@ -157,13 +157,21 @@ Or see: [example.vue](https://github.com/hiyali/vue-smooth-picker/blob/master/ex
 | `setGroupData`             | `Function` | Dynamically set a group data with two arguments `(gIndex, gData)`, group index and group data (see props `data[i]`) |
 | `getCurrentIndexList`      | `Function` | Return a `Array` of the groups current index list (has divider current index, and it is default to `0`) |
 
-## For customization
-
+## Development
 ```shell
 npm run dev # development
 npm run build # build
-npm run example # develop example files
+npm run example # example files
 ```
+
+## Any problem?
+> Please let me know.
+* [Open a new issue for this repo](https://github.com/hiyali/vue-smooth-picker/issues)
+* [Send a Email to: hiyali920@gmail.com](hiyali920@gmail.com)
 
 ## Donate
 🌚 [A github star ⍟](https://github.com/hiyali/vue-smooth-picker)
+
+## License
+MIT
+
