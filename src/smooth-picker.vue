@@ -68,7 +68,7 @@
         this.currentIndexList[gIndex] = movedIndex
       },
       getInitialCurrentIndexList () {
-        return this.data.map(function (item, index) {
+        return this.data.map((item, index) => {
           const iCI = item.currentIndex
           if (typeof iCI === 'number' && iCI >= 0 && item.list && item.list.length && iCI <= item.list.length - 1) {
             return Math.round(iCI)
@@ -78,9 +78,9 @@
       },
       getGroupsRectList () {
         if (this.$refs.smoothGroup) {
-          this.$refs.smoothGroup.forEach(function (item, index) {
+          this.$refs.smoothGroup.forEach((item, index) => {
             this.groupsRectList[index] = item.getBoundingClientRect()
-          }.bind(this))
+          })
         }
       },
       eventsRegister () {
@@ -97,7 +97,7 @@
           { name: _ ? 'touchend' : 'mouseup', handler: this.handleEnd },
           { name: _ ? 'touchcancel' : 'mouseleave', handler: this.handleCancel }
         ]
-        eventHandlerList.forEach(function (item, index) {
+        eventHandlerList.forEach((item, index) => {
           el.removeEventListener(item.name, item.handler, false)
           el.addEventListener(item.name, item.handler, false)
         })
@@ -109,14 +109,16 @@
         }
       },
       triggerAboveLayerClick (ev, gIndex) {
-        this.forceUpdateCurrentIndex(gIndex, this.currentIndexList[gIndex] + 1)
+        const movedIndex = this.currentIndexList[gIndex] + 1
+        this.$set(this.currentIndexList, gIndex, movedIndex)
         this.correctionCurrentIndex(ev, gIndex)
       },
       triggerMiddleLayerClick (ev, gIndex) {
         this.triggerMiddleLayerGroupClick(gIndex)
       },
       triggerBelowLayerClick (ev, gIndex) {
-        this.forceUpdateCurrentIndex(gIndex, this.currentIndexList[gIndex] - 1)
+        const movedIndex = this.currentIndexList[gIndex] - 1
+        this.$set(this.currentIndexList, gIndex, movedIndex)
         this.correctionCurrentIndex(ev, gIndex)
       },
       getTouchInfo (ev) {
@@ -190,11 +192,6 @@
           this.draggingInfo.isDragging = false
         }
       },
-      forceUpdateCurrentIndex (gIndex, movedIndex) {
-        const tempCIL = JSON.parse(JSON.stringify(this.currentIndexList))
-        tempCIL[gIndex] = movedIndex
-        this.currentIndexList = tempCIL
-      },
       setCurrentIndexOnMove (ev) {
         const touchInfo = this.getTouchInfo(ev)
         if (this.draggingInfo.groupIndex === null) {
@@ -209,7 +206,7 @@
         const moveCount = (this.draggingInfo.startPageY - touchInfo.pageY) / 32
         const movedIndex = this.currentIndexList[gIndex] + moveCount
 
-        this.forceUpdateCurrentIndex(gIndex, movedIndex)
+        this.$set(this.currentIndexList, gIndex, movedIndex)
 
         this.draggingInfo.startPageY = touchInfo.pageY
       },
@@ -221,21 +218,22 @@
         this.draggingInfo.startPageY = null
       },
       correctionCurrentIndex (ev, gIndex) {
-        setTimeout(function () {
+        setTimeout(() => {
           if (typeof gIndex === 'number' && this.data[gIndex].divider !== true && this.data[gIndex].list.length > 0) {
-            let movedIndex = this.currentIndexList[gIndex]
-            if (movedIndex > this.data[gIndex].list.length - 1) {
+            const unsafeGroupIndex = this.currentIndexList[gIndex]
+
+            let movedIndex = unsafeGroupIndex
+            if (unsafeGroupIndex > this.data[gIndex].list.length - 1) {
               movedIndex = this.data[gIndex].list.length - 1
-            } else if (movedIndex < 0) {
+            } else if (unsafeGroupIndex < 0) {
               movedIndex = 0
             }
             movedIndex = Math.round(movedIndex)
 
-            this.forceUpdateCurrentIndex(gIndex, movedIndex)
-
+            this.$set(this.currentIndexList, gIndex, movedIndex)
             this.change(gIndex, movedIndex)
           }
-        }.bind(this), 100)
+        }, 150)
       },
       isCurrentItem (gIndex, iIndex) {
         return this.currentIndexList[gIndex] === iIndex
