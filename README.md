@@ -8,6 +8,10 @@
 ![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/master/dist/css/style.css.svg?compression=gzip&label=gzip%20size:%20CSS)
 [![CircleCI Status](https://circleci.com/gh/hiyali/vue-smooth-picker.svg?style=shield)](https://circleci.com/gh/hiyali/vue-smooth-picker)
 
+[![NPM Description](https://nodei.co/npm/vue-smooth-picker.png?downloads=true&stars=true)](https://npmjs.org/package/vue-smooth-picker)
+
+> A SmoothPicker for Vue 2, it looks like iOS native datetime picker.
+
 ## Take a look
 
 [Live demo](https://hiyali.github.io/vue-smooth-picker)
