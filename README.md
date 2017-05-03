@@ -167,7 +167,7 @@ npm run example # example files
 ## Any problem?
 > Please let me know.
 * [Open a new issue for this repo](https://github.com/hiyali/vue-smooth-picker/issues)
-* [Send a Email to: hiyali920@gmail.com](hiyali920@gmail.com)
+* [Send a Email to: hiyali920@gmail.com](mailto:hiyali920@gmail.com)
 
 ## Donate
 🌚 [A github star ⍟](https://github.com/hiyali/vue-smooth-picker)
