@@ -1,4 +1,4 @@
-# vue-smooth-picker  <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
+# vue-smooth-picker  <sup>[![Version Badge](http://versionbadg.es/hiyali/vue-smooth-picker.svg)](https://npmjs.com/package/vue-smooth-picker)</sup>
 🏄🏼 A SmoothPicker for Vue 2
 
 [![npm package](https://img.shields.io/npm/v/vue-smooth-picker.svg)](https://npmjs.com/package/vue-smooth-picker)
