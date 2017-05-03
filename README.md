@@ -10,7 +10,7 @@
 
 [![NPM Description](https://nodei.co/npm/vue-smooth-picker.png?downloads=true&stars=true)](https://npmjs.org/package/vue-smooth-picker)
 
-> A SmoothPicker for Vue 2, it looks like iOS native datetime picker.
+> A SmoothPicker for Vue 2, it looks like iOS native datetime picker. If you want to a component when your user need to select some option / date / time / other etc. You can use this.
 
 ## Take a look
 
