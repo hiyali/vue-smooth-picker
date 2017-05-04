@@ -10,7 +10,7 @@
 
 [![NPM Description](https://nodei.co/npm/vue-smooth-picker.png?downloads=true&stars=true)](https://npmjs.org/package/vue-smooth-picker)
 
-> Let's make easier that select some data like date / time / cities / sex / seat number / ...
+> Let's more easily select some data on the touch screen device, such as time / city / gender / seat number / product / ...
 
 ## Take a look
 
