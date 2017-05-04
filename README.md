@@ -16,9 +16,9 @@
 
 [Live demo](https://hiyali.github.io/vue-smooth-picker)
 
-### Screenshot
+![Screen shot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/master/assets/smooth-picker-screenshot.png "screenshot")
 
-![screenshot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/master/assets/smooth-picker-screenshot.png "screenshot")
+![Screen record](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screen-record.gif "screen record")
 
 ## Install
 
