@@ -16,9 +16,9 @@
     </div>
 
     <div ref="smoothHandleLayer" class="smooth-handle-layer flex-box direction-column">
-      <div data-type="above" class="smooth-above flex-1"></div>
+      <div data-type="top" class="smooth-top flex-1"></div>
       <div data-type="middle" class="smooth-middle"></div>
-      <div data-type="below" class="smooth-below flex-1"></div>
+      <div data-type="bottom" class="smooth-bottom flex-1"></div>
     </div>
 
   </div>
@@ -139,21 +139,23 @@
         const gIndex = this.getGroupIndexBelongsEvent(ev)
 
         switch (ev.target.dataset.type) {
-          case 'above':
+          case 'top':
             this.triggerAboveLayerClick(ev, gIndex)
             break
           case 'middle':
             this.triggerMiddleLayerClick(ev, gIndex)
             break
-          case 'below':
+          case 'bottom':
             this.triggerBelowLayerClick(ev, gIndex)
             break
           default:
         }
       },
       handleStart (ev) {
-        ev.preventDefault()
-        ev.stopPropagation()
+        if (ev.cancelable) {
+          ev.preventDefault()
+          ev.stopPropagation()
+        }
 
         const touchInfo = this.getTouchInfo(ev)
         this.draggingInfo.startPageY = touchInfo.pageY
@@ -329,13 +331,13 @@
       right: 0
       top: -1px
       bottom: -1px
-      .smooth-above
+      .smooth-top
         border-bottom: 1px solid #c8c7cc
         background: linear-gradient(to bottom, white 10%, rgba(255, 255, 255, 0.7) 100%)
         transform: translate3d(0, 0, 5.625rem)
       .smooth-middle
         height: r($smoothMiddleLayerHeight)
-      .smooth-below
+      .smooth-bottom
         border-top: 1px solid #c8c7cc
         background: linear-gradient(to top, white 10%, rgba(255, 255, 255, 0.7) 100%)
         transform: translate3d(0, 0, 5.625rem)
