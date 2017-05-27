@@ -12,14 +12,6 @@
 
 > Let's more easily select some data on the touch screen device, such as time / city / gender / seat number / product / ...
 
-## Take a look
-
-[Live demo](https://hiyali.github.io/vue-smooth-picker)
-
-![Screen shot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/master/assets/smooth-picker-screenshot.png "screenshot")
-
-![Screen record](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screen-record.gif "screen record")
-
 ## Install
 
 ```shell
@@ -43,7 +35,6 @@ Vue.use(SmoothPicker)
 // in your template
 <smooth-picker ref="smoothPicker" :data="data" :change="change" />
 ```
-Or see: [example files](https://github.com/hiyali/vue-smooth-picker/blob/master/example/)
 
 ## props
 
@@ -73,7 +64,7 @@ Or see: [example files](https://github.com/hiyali/vue-smooth-picker/blob/master/
 ```shell
 npm run dev # development
 npm run build # build
-npm run example # example files
+npm run example {exampleName} # example files, exampleName: product, datetime, gender ...
 ```
 
 ## Any problem?
