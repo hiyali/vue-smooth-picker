@@ -9,7 +9,7 @@ module.exports = {
   output: {
     path: './dist',
     publicPath: '',
-    filename: '[name].js'
+    filename: '[name].js',
     library: 'SmoothPicker',
     libraryTarget: 'umd'
   },
