@@ -4,9 +4,9 @@
   "description": "vue2 smooth picker like datetime picker",
   "main": "dist/smooth-picker.js",
   "scripts": {
-    "example": "webpack --config conf/webpack.conf.js --watch --progress --color --example",
-    "dev": "webpack --config conf/webpack.conf.js --watch --progress --color",
     "build": "webpack --config conf/webpack.conf.js --progress --color --production",
+    "dev": "webpack --config conf/webpack.conf.js --watch --progress --color",
+    "example": "webpack --config conf/webpack.conf.js --watch --progress --color --example",
     "test": "echo \"Warning: no test specified yet\" && exit 0"
   },
   "author": "Salam Hiyali",

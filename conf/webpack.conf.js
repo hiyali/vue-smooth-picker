@@ -3,17 +3,28 @@ var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 var exampleMode = false
+var exampleName = 'product'
 if (process.argv.indexOf('--example') > -1) {
   exampleMode = true
+  if (process.argv[8]) {
+    exampleName = process.argv[8]
+  } else {
+    console.error('Not give example name, you can enter\n' +
+                 'npm run example product\n' +
+                 'Example names: product, datetime, gender')
+    return 0
+  }
 }
 
 module.exports = {
-  entry: exampleMode ? { 'example': './example' } : { 'smooth-picker': './src' },
+  entry: exampleMode ? { 'index': './example/' + exampleName } : { 'smooth-picker': './src' },
   output: Object.assign({
-    path: './dist',
     publicPath: '',
     filename: '[name].js'
-  }, exampleMode ? {} : {
+  }, exampleMode ? {
+    path: './example/' + exampleName + '/dist'
+  } : {
+    path: './dist',
     library: 'SmoothPicker',
     libraryTarget: 'umd'
   }),
@@ -136,6 +147,6 @@ module.exports = {
         comments: exampleMode
       }
     }),
-    new ExtractTextPlugin(exampleMode ? 'css/example.css' : 'css/style.css')
+    new ExtractTextPlugin(exampleMode ? 'style.css' : 'css/style.css')
   ]
 }
