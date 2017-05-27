@@ -29,7 +29,7 @@
       },
       confirm () {
         const ciList = this.$refs.smoothPicker.getCurrentIndexList()
-        window.alert('Clicked on: ' + this.data[0].list[ciList[0]])
+        window.alert('Selected: ' + this.data[0].list[ciList[0]])
       }
     }
   }

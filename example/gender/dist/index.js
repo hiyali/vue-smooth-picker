@@ -1156,7 +1156,7 @@ function(t,e,n){!function e(n,r){t.exports=r()}(this,function(){return function(
 function(t,e,n){/* styles */
 n(42);var r=n(44)(/* script */
 n(45),/* template */
-n(69),/* scopeId */
+n(46),/* scopeId */
 null,/* cssModules */
 null);t.exports=r.exports},/* 42 */
 /***/
@@ -1169,29 +1169,6 @@ function(t,e){t.exports=function t(e,n,r,o){var i,a,s,u=e=e||{},c=typeof e.defau
 // inject cssModules
 return"object"!==c&&"function"!==c||(i=e,u=e.default),a="function"==typeof u?u.options:u,n&&(a.render=n.render,a.staticRenderFns=n.staticRenderFns),r&&(a._scopeId=r),o&&(s=a.computed||(a.computed={}),Object.keys(o).forEach(function(t){var e=o[t];s[t]=function(){return e}})),{esModule:i,exports:u,options:a}}},/* 45 */
 /***/
-function(t,e){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={name:"example-page",data:function t(){return{data:[{currentIndex:1,flex:3,list:["Secret","Male","Female"],onClick:this.clickOnGender,textAlign:"center",className:"row-group"}]}},methods:{dataChange:function t(e,n){console.info("list",e,n)},confirm:function t(){var e=this.$refs.smoothPicker.getCurrentIndexList();window.alert("Clicked on: "+this.data[0].list[e[0]])}}}},/* 46 */
-,/* 47 */
-,/* 48 */
-,/* 49 */
-,/* 50 */
-,/* 51 */
-,/* 52 */
-,/* 53 */
-,/* 54 */
-,/* 55 */
-,/* 56 */
-,/* 57 */
-,/* 58 */
-,/* 59 */
-,/* 60 */
-,/* 61 */
-,/* 62 */
-,/* 63 */
-,/* 64 */
-,/* 65 */
-,/* 66 */
-,/* 67 */
-,/* 68 */
-,/* 69 */
+function(t,e){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={name:"example-page",data:function t(){return{data:[{currentIndex:1,flex:3,list:["Secret","Male","Female"],onClick:this.clickOnGender,textAlign:"center",className:"row-group"}]}},methods:{dataChange:function t(e,n){console.info("list",e,n)},confirm:function t(){var e=this.$refs.smoothPicker.getCurrentIndexList();window.alert("Selected: "+this.data[0].list[e[0]])}}}},/* 46 */
 /***/
 function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("div",{staticClass:"example-page"},[n("smooth-picker",{ref:"smoothPicker",attrs:{data:t.data,change:t.dataChange}}),t._v(" "),n("button",{staticClass:"button",attrs:{type:"button"},on:{click:t.confirm}},[t._v("Confirm")])],1)},staticRenderFns:[]}}]);
