@@ -14,7 +14,9 @@
 
 ## Take a look
 
-[Live demo](https://hiyali.github.io/vue-smooth-picker)
+[Demo product](https://hiyali.github.io/vue-smooth-picker/example/product)
+[Demo datetime](https://hiyali.github.io/vue-smooth-picker/example/datetime)
+[Demo gender](https://hiyali.github.io/vue-smooth-picker/example/gender)
 
 ![Screen shot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screenshot.png "screenshot")
 
@@ -73,8 +75,11 @@ Or see: [example files](https://github.com/hiyali/vue-smooth-picker/blob/gh-page
 ```shell
 npm run dev # development
 npm run build # build
-npm run example # example files
 ```
+
+## Examples
+
+> See branch gh-pages.
 
 ## Any problem?
 
