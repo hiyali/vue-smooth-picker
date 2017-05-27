@@ -2,28 +2,23 @@ var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-var exampleMode = false
-if (process.argv.indexOf('--example') > -1) {
-  exampleMode = true
-}
-
 module.exports = {
-  entry: exampleMode ? { 'example': './example' } : { 'smooth-picker': './src' },
-  output: Object.assign({
+  entry: {
+    'smooth-picker': './src'
+  },
+  output: {
     path: './dist',
     publicPath: '',
     filename: '[name].js'
-  }, exampleMode ? {} : {
     library: 'SmoothPicker',
     libraryTarget: 'umd'
-  }),
+  },
   resolve: {
     extensions: ['', '.js', '.vue'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
       'src': path.resolve(__dirname, '../src'),
-      'smooth-picker': path.resolve(__dirname, '../src'),
-      'example': path.resolve(__dirname, '../example')
+      'smooth-picker': path.resolve(__dirname, '../src')
     }
   },
   resolveLoader: {
@@ -35,8 +30,7 @@ module.exports = {
         test: /\.vue$/,
         loader: 'eslint',
         include: [
-          path.join(__dirname, '../src'),
-          path.join(__dirname, '../example')
+          path.join(__dirname, '../src')
         ],
         exclude: /node_modules/
       },
@@ -44,8 +38,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'eslint',
         include: [
-          path.join(__dirname, '../src'),
-          path.join(__dirname, '../example')
+          path.join(__dirname, '../src')
         ],
         exclude: /node_modules|\.min\.js$/
       }
@@ -59,8 +52,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel',
         include: [
-          path.join(__dirname, '../src'),
-          path.join(__dirname, '../example')
+          path.join(__dirname, '../src')
         ],
         exclude: /node_modules/
       },
@@ -114,8 +106,8 @@ module.exports = {
         sequences     : true,  // join consecutive statemets with the “comma operator”
         properties    : true,  // optimize property access: a["foo"] → a.foo
         dead_code     : true,  // discard unreachable code
-        drop_debugger : !exampleMode,  // discard “debugger” statements
-        drop_console  : !exampleMode,  // discard “console” statements
+        drop_debugger : true,  // discard “debugger” statements
+        drop_console  : true,  // discard “console” statements
         unsafe        : true, // some unsafe optimizations (see below)
         conditionals  : true,  // optimize if-s and conditional expressions
         comparisons   : true,  // optimize comparisons
@@ -133,9 +125,9 @@ module.exports = {
         keep_fnames: true
       },
       output: {
-        comments: exampleMode
+        comments: false
       }
     }),
-    new ExtractTextPlugin(exampleMode ? 'css/example.css' : 'css/style.css')
+    new ExtractTextPlugin('css/style.css')
   ]
 }

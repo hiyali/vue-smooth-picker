@@ -16,7 +16,7 @@
 
 [Live demo](https://hiyali.github.io/vue-smooth-picker)
 
-![Screen shot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/master/assets/smooth-picker-screenshot.png "screenshot")
+![Screen shot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screenshot.png "screenshot")
 
 ![Screen record](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screen-record.gif "screen record")
 
@@ -43,7 +43,7 @@ Vue.use(SmoothPicker)
 // in your template
 <smooth-picker ref="smoothPicker" :data="data" :change="change" />
 ```
-Or see: [example files](https://github.com/hiyali/vue-smooth-picker/blob/master/example/)
+Or see: [example files](https://github.com/hiyali/vue-smooth-picker/blob/gh-pages/example/product/)
 
 ## props
 
