@@ -14,9 +14,10 @@
 
 ## Take a look
 
-[Demo product](https://hiyali.github.io/vue-smooth-picker/example/product)
-[Demo datetime](https://hiyali.github.io/vue-smooth-picker/example/datetime)
-[Demo gender](https://hiyali.github.io/vue-smooth-picker/example/gender)
+Demo links:
+[Product](https://hiyali.github.io/vue-smooth-picker/example/product)
+| [Datetime](https://hiyali.github.io/vue-smooth-picker/example/datetime)
+| [Gender](https://hiyali.github.io/vue-smooth-picker/example/gender)
 
 ![Screen shot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screenshot.png "screenshot")
 
