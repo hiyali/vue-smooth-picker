@@ -46,6 +46,7 @@
     "poststylus": "^0.2.3",
     "rucksack-css": "^0.9.1",
     "shelljs": "^0.7.4",
+    "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.5.1",
     "url-loader": "^0.5.7",
