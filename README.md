@@ -12,6 +12,13 @@
 
 > Let's more easily select some data on the touch screen device, such as time / city / gender / seat number / product / ...
 
+## Take a look
+
+Demo links:
+[Product](https://hiyali.github.io/vue-smooth-picker/example/product)
+| [Datetime](https://hiyali.github.io/vue-smooth-picker/example/datetime)
+| [Gender](https://hiyali.github.io/vue-smooth-picker/example/gender)
+
 ## Install
 
 ```shell
