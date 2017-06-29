@@ -19,6 +19,11 @@ Demo links:
 | [Datetime](https://hiyali.github.io/vue-smooth-picker/example/datetime)
 | [Gender](https://hiyali.github.io/vue-smooth-picker/example/gender)
 
+Demo code links:
+[Product](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/product)
+| [Datetime](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/datetime)
+| [Gender](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/gender)
+
 ![Screen shot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screenshot.png "screenshot")
 
 ![Screen record](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screen-record.gif "screen record")
