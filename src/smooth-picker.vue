@@ -56,6 +56,10 @@
       this.eventsRegister()
 
       this.getGroupsRectList() // FIXME: it is wrong rects when group changed ?
+      window.addEventListener('resize', this.getGroupsRectList)
+    },
+    destroyed () {
+      window.removeEventListener('resize', this.getGroupsRectList)
     },
     methods: {
       setGroupData (gIndex, groupData) {
