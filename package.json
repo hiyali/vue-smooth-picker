@@ -1,7 +1,7 @@
 {
   "name": "vue-smooth-picker",
-  "version": "0.2.5",
-  "description": "vue2 smooth picker like datetime picker",
+  "version": "0.2.6",
+  "description": "A vue2 data picker that like native datetime picker",
   "main": "dist/smooth-picker.js",
   "scripts": {
     "example": "webpack --config conf/webpack.conf.js --watch --progress --color --example",
