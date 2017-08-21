@@ -10,7 +10,7 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 
-const version = '0.2.6'
+const version = '0.2.7'
 export {
   install as default,
   version,

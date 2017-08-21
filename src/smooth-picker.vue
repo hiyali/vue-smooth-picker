@@ -40,6 +40,7 @@
     data () {
       return {
         currentIndexList: this.getInitialCurrentIndexList(),
+        lastCurrentIndexList: [],
         groupsRectList: new Array(this.data.length),
         touchOrMouse: {
           isTouchable: 'ontouchstart' in window,
@@ -70,6 +71,7 @@
           movedIndex = Math.round(iCI)
         }
         this.currentIndexList[gIndex] = movedIndex
+        this.lastCurrentIndexList = [].concat(this.currentIndexList)
       },
       getInitialCurrentIndexList () {
         return this.data.map((item, index) => {
@@ -237,7 +239,10 @@
             movedIndex = Math.round(movedIndex)
 
             this.$set(this.currentIndexList, gIndex, movedIndex)
-            this.change(gIndex, movedIndex)
+            if (movedIndex !== this.lastCurrentIndexList[gIndex]) {
+              this.change(gIndex, movedIndex)
+            }
+            this.lastCurrentIndexList = [].concat(this.currentIndexList)
           }
         }, 100)
       },
