@@ -50,17 +50,19 @@
           isDragging: false,
           groupIndex: null,
           startPageY: null
-        }
+        },
+        getRectTimeoutId: null
       }
     },
     mounted () {
       this.eventsRegister()
 
-      this.getGroupsRectList() // FIXME: it is wrong rects when group changed ?
-      window.addEventListener('resize', this.getGroupsRectList)
+      this.getGroupsRectList()
+
+      window.addEventListener('resize', this.safeGetGroupRectList)
     },
     destroyed () {
-      window.removeEventListener('resize', this.getGroupsRectList)
+      window.removeEventListener('resize', this.safeGetGroupRectList)
     },
     methods: {
       setGroupData (gIndex, groupData) {
@@ -72,6 +74,8 @@
         }
         this.currentIndexList[gIndex] = movedIndex
         this.lastCurrentIndexList = [].concat(this.currentIndexList)
+
+        this.safeGetGroupRectList()
       },
       getInitialCurrentIndexList () {
         return this.data.map((item, index) => {
@@ -81,6 +85,12 @@
           }
           return 0
         })
+      },
+      safeGetGroupRectList () {
+        this.getRectTimeoutId && clearTimeout(this.getRectTimeoutId)
+        this.getRectTimeoutId = setTimeout(() => {
+          this.getGroupsRectList()
+        }, 200)
       },
       getGroupsRectList () {
         if (this.$refs.smoothGroup) {
