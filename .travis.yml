@@ -9,3 +9,7 @@ notifications:
   email:
     on_success: never
     on_failure: always
+# safelist
+branches:
+  only:
+  - master
