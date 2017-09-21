@@ -51,7 +51,7 @@ Vue.use(SmoothPicker)
 // in your template
 <smooth-picker ref="smoothPicker" :data="data" :change="change" />
 ```
-Or see: [example files](https://github.com/hiyali/vue-smooth-picker/blob/gh-pages/example/product/)
+Or see: [example files](https://github.com/hiyali/vue-smooth-picker/blob/gh-pages/example/gender/)
 
 ## props
 
