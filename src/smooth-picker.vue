@@ -40,6 +40,7 @@
     data () {
       return {
         currentIndexList: this.getInitialCurrentIndexList(),
+        lastCurrentIndexList: [],
         groupsRectList: new Array(this.data.length),
         touchOrMouse: {
           isTouchable: 'ontouchstart' in window,
@@ -49,13 +50,19 @@
           isDragging: false,
           groupIndex: null,
           startPageY: null
-        }
+        },
+        getRectTimeoutId: null
       }
     },
     mounted () {
       this.eventsRegister()
 
-      this.getGroupsRectList() // FIXME: it is wrong rects when group changed ?
+      this.getGroupsRectList()
+
+      window.addEventListener('resize', this.safeGetGroupRectList)
+    },
+    destroyed () {
+      window.removeEventListener('resize', this.safeGetGroupRectList)
     },
     methods: {
       setGroupData (gIndex, groupData) {
@@ -66,6 +73,9 @@
           movedIndex = Math.round(iCI)
         }
         this.currentIndexList[gIndex] = movedIndex
+        this.lastCurrentIndexList = [].concat(this.currentIndexList)
+
+        this.safeGetGroupRectList()
       },
       getInitialCurrentIndexList () {
         return this.data.map((item, index) => {
@@ -75,6 +85,12 @@
           }
           return 0
         })
+      },
+      safeGetGroupRectList () {
+        this.getRectTimeoutId && clearTimeout(this.getRectTimeoutId)
+        this.getRectTimeoutId = setTimeout(() => {
+          this.getGroupsRectList()
+        }, 200)
       },
       getGroupsRectList () {
         if (this.$refs.smoothGroup) {
@@ -233,7 +249,10 @@
             movedIndex = Math.round(movedIndex)
 
             this.$set(this.currentIndexList, gIndex, movedIndex)
-            this.change(gIndex, movedIndex)
+            if (movedIndex !== this.lastCurrentIndexList[gIndex]) {
+              this.change(gIndex, movedIndex)
+            }
+            this.lastCurrentIndexList = [].concat(this.currentIndexList)
           }
         }, 100)
       },
