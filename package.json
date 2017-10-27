@@ -1,12 +1,13 @@
 {
   "name": "vue-smooth-picker",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A vue2 data picker that like native datetime picker",
   "main": "dist/smooth-picker.js",
   "scripts": {
     "example": "webpack --config conf/webpack.conf.js --watch --progress --color --example",
     "dev": "webpack --config conf/webpack.conf.js --watch --progress --color",
     "build": "webpack --config conf/webpack.conf.js --progress --color --production",
+    "prepublish": "npm run build",
     "test": "echo \"Warning: no test specified yet\" && exit 0"
   },
   "author": "Salam Hiyali",
