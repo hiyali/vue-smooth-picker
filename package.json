@@ -1,6 +1,6 @@
 {
   "name": "vue-smooth-picker",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A vue2 data picker that like native datetime picker",
   "main": "dist/smooth-picker.js",
   "scripts": {
@@ -59,6 +59,12 @@
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
   },
+  "files": [
+    "src/*",
+    "dist/*",
+    "README.md",
+    "LICENSE"
+  ],
   "repository": "https://github.com/hiyali/vue-smooth-picker.git",
   "license": "MIT"
 }
