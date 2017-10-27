@@ -7,7 +7,7 @@
     "example": "webpack --config conf/webpack.conf.js --watch --progress --color --example",
     "dev": "webpack --config conf/webpack.conf.js --watch --progress --color",
     "build": "webpack --config conf/webpack.conf.js --progress --color --production",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "test": "echo \"Warning: no test specified yet\" && exit 0"
   },
   "author": "Salam Hiyali",
