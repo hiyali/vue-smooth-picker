@@ -49,7 +49,7 @@ var n={};/******/
 /******/
 return t.m=e,t.c=n,t.p="",t(0)}([/* 0 */
 /***/
-function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}var o,i,a=n(1),s=r(a),c=n(5),u=r(c);n(6),o=n(11),i=r(o),s.default.use(u.default),new s.default(Object.assign({},i.default,{el:"#app"}))},/* 1 */
+function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}var o,i,a=n(1),s=r(a),c=n(5),u=r(c);n(6),o=n(11),i=r(o),s.default.use(u.default),console.warn("vue-smooth-picker version",c.version),new s.default(Object.assign({},i.default,{el:"#app"}))},/* 1 */
 /***/
 function(e,t,n){/* WEBPACK VAR INJECTION */
 (function(t,n,r){/*!
@@ -1216,6 +1216,6 @@ function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),
 //
 //
 //
-t.default={name:"example-page",data:function e(){return{data:[{currentIndex:1,flex:3,list:["Secret","Male","Female"],onClick:this.clickOnGender,textAlign:"center",className:"row-group"}]}},methods:{dataChange:function e(t,n){console.info("list",t,n)},confirm:function e(){var t=this.$refs.smoothPicker.getCurrentIndexList();window.alert("Selected: "+this.data[0].list[t[0]])}}}},/* 15 */
+t.default={name:"example-page",data:function e(){return{showPicker:!1,data:[{currentIndex:1,flex:3,list:["Secret","Male","Female"],onClick:this.clickOnGender,textAlign:"center",className:"row-group"}]}},methods:{clickOnGender:function e(){var t=this.$refs.smoothPicker.getCurrentIndexList();window.alert("Clicked index:"+t[0])},dataChange:function e(t,n){console.info("list",t,n)},confirm:function e(){var t=this.$refs.smoothPicker.getCurrentIndexList();window.alert("Selected: "+this.data[0].list[t[0]])}},mounted:function e(){var t=this;setTimeout(function(){t.showPicker=!0},2e3)}}},/* 15 */
 /***/
-function(e,t){e.exports={render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"example-page"},[n("smooth-picker",{ref:"smoothPicker",attrs:{data:e.data,change:e.dataChange}}),e._v(" "),n("button",{staticClass:"button",attrs:{type:"button"},on:{click:e.confirm}},[e._v("Confirm")])],1)},staticRenderFns:[]}}]);
+function(e,t){e.exports={render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"example-page"},[n("smooth-picker",{directives:[{name:"show",rawName:"v-show",value:e.showPicker,expression:"showPicker"}],ref:"smoothPicker",attrs:{data:e.data,change:e.dataChange}}),e._v(" "),n("button",{staticClass:"button",attrs:{type:"button"},on:{click:e.confirm}},[e._v("Confirm")])],1)},staticRenderFns:[]}}]);

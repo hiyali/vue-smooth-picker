@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-var exampleName = process.argv[7] || process.argv[6] // when dev or build
+var exampleName = process.argv[7]
 if (!exampleName) {
   console.error('Not give example name, you can enter\n' +
     'npm run example product\n' +

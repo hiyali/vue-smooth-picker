@@ -1,6 +1,6 @@
 <template>
   <div class="example-page">
-    <smooth-picker ref="smoothPicker" :data="data" :change="dataChange" />
+    <smooth-picker v-show="showPicker" ref="smoothPicker" :data="data" :change="dataChange" />
     <button class="button" type="button" @click="confirm">Confirm</button>
   </div>
   </div>
@@ -11,6 +11,7 @@
     name: 'example-page',
     data () {
       return {
+        showPicker: false,
         data: [
           {
             currentIndex: 1,
@@ -24,6 +25,10 @@
       }
     },
     methods: {
+      clickOnGender () {
+        const ciList = this.$refs.smoothPicker.getCurrentIndexList()
+        window.alert('Clicked index:' + ciList[0])
+      },
       dataChange (gIndex, iIndex) {
         console.info('list', gIndex, iIndex)
       },
@@ -31,6 +36,11 @@
         const ciList = this.$refs.smoothPicker.getCurrentIndexList()
         window.alert('Selected: ' + this.data[0].list[ciList[0]])
       }
+    },
+    mounted () {
+      setTimeout(() => {
+        this.showPicker = true
+      }, 200)
     }
   }
 </script>

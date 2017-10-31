@@ -3,8 +3,8 @@
   "version": "0.3.5",
   "description": "Examples of A vue2 data picker that like native datetime picker",
   "scripts": {
-    "dev": "webpack --config conf/webpack.conf.js --watch --progress --color",
-    "build": "webpack --config conf/webpack.conf.js --progress --color",
+    "dev": "webpack --config conf/webpack.conf.js --progress --color --watch",
+    "build": "webpack --config conf/webpack.conf.js --progress --color --production",
     "test": "echo \"Warning: no test specified yet\" && exit 0"
   },
   "author": "Salam Hiyali",
@@ -49,7 +49,7 @@
     "stylus-loader": "^2.5.1",
     "url-loader": "^0.5.7",
     "vue-loader": "^10.3.0",
-    "vue-template-compiler": "^2.1.0",
+    "vue-template-compiler": "^2.5.2",
     "webpack": "^1.14.0",
     "webpack-dashboard": "^0.2.0",
     "webpack-dev-middleware": "^1.8.3",
