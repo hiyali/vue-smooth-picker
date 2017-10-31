@@ -1,6 +1,6 @@
 {
   "name": "vue-smooth-picker-example",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Examples of A vue2 data picker that like native datetime picker",
   "scripts": {
     "dev": "webpack --config conf/webpack.conf.js --progress --color --watch",
@@ -10,7 +10,7 @@
   "author": "Salam Hiyali",
   "dependencies": {
     "vue": "^2.5.2",
-    "vue-smooth-picker": "^0.3.5"
+    "vue-smooth-picker": "^0.3.6"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
