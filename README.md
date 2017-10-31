@@ -68,10 +68,11 @@ Vue.use(SmoothPicker)
 
 ## Development
 
+> exampleName: product | datetime | gender ...
+
 ```shell
-npm run dev # development
-npm run build # build
-npm run example {exampleName} # example files, exampleName: product, datetime, gender ...
+npm run dev {exampleName} # dev
+npm run build {exampleName} # build
 ```
 
 ## Any problem?
