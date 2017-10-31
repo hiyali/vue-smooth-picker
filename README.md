@@ -68,7 +68,7 @@ Vue.use(SmoothPicker)
 
 ## Development
 
-> exampleName: product | datetime | gender ...
+> {exampleName} : product | datetime | gender ...
 
 ```shell
 npm run dev {exampleName} # dev
