@@ -61,6 +61,11 @@
 
       window.addEventListener('resize', this.safeGetGroupRectList)
     },
+    updated () {
+      this.$nextTick(function () {
+        this.getGroupsRectList()
+      })
+    },
     destroyed () {
       window.removeEventListener('resize', this.safeGetGroupRectList)
     },
