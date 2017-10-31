@@ -63,6 +63,7 @@
     mounted () {
       this.eventsRegister()
 
+      this.$nextTick(this.getGroupsRectList())
       this.supInfo.watchDomObserver = this.createDomObserver()
       this.supInfo.watchDomObserver.observe(this.$el, { attributes: true })
 
