@@ -2,38 +2,26 @@ var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-var exampleMode = false
-var exampleName = 'product'
-if (process.argv.indexOf('--example') > -1) {
-  exampleMode = true
-  if (process.argv[8]) {
-    exampleName = process.argv[8]
-  } else {
-    console.error('Not give example name, you can enter\n' +
-                 'npm run example product\n' +
-                 'Example names: product, datetime, gender')
-    return 0
-  }
+var exampleName = process.argv[7] || process.argv[6] // when dev or build
+if (!exampleName) {
+  console.error('Not give example name, you can enter\n' +
+    'npm run example product\n' +
+    'Example names: product, datetime, gender')
+  return 5
 }
 
 module.exports = {
-  entry: exampleMode ? { 'index': './example/' + exampleName } : { 'smooth-picker': './src' },
-  output: Object.assign({
+  entry: { 'index': './example/' + exampleName },
+  output: {
     publicPath: '',
-    filename: '[name].js'
-  }, exampleMode ? {
+    filename: '[name].js',
     path: './example/' + exampleName + '/dist'
-  } : {
-    path: './dist',
-    library: 'SmoothPicker',
-    libraryTarget: 'umd'
-  }),
+  },
   resolve: {
     extensions: ['', '.js', '.vue'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
       'src': path.resolve(__dirname, '../src'),
-      'smooth-picker': path.resolve(__dirname, '../src'),
       'example': path.resolve(__dirname, '../example')
     }
   },
@@ -129,8 +117,8 @@ module.exports = {
         sequences     : true,  // join consecutive statemets with the “comma operator”
         properties    : true,  // optimize property access: a["foo"] → a.foo
         dead_code     : true,  // discard unreachable code
-        drop_debugger : !exampleMode,  // discard “debugger” statements
-        drop_console  : !exampleMode,  // discard “console” statements
+        drop_debugger : false,  // discard “debugger” statements
+        drop_console  : false,  // discard “console” statements
         unsafe        : true, // some unsafe optimizations (see below)
         conditionals  : true,  // optimize if-s and conditional expressions
         comparisons   : true,  // optimize comparisons
@@ -148,9 +136,9 @@ module.exports = {
         keep_fnames: true
       },
       output: {
-        comments: exampleMode
+        comments: true
       }
     }),
-    new ExtractTextPlugin(exampleMode ? 'style.css' : 'css/style.css')
+    new ExtractTextPlugin('style.css')
   ]
 }

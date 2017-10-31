@@ -1,25 +1,24 @@
 {
-  "name": "vue-smooth-picker",
-  "version": "0.3.0",
-  "description": "A vue2 data picker that like native datetime picker",
-  "main": "dist/smooth-picker.js",
+  "name": "vue-smooth-picker-example",
+  "version": "0.3.5",
+  "description": "Examples of A vue2 data picker that like native datetime picker",
   "scripts": {
-    "build": "webpack --config conf/webpack.conf.js --progress --color --production",
     "dev": "webpack --config conf/webpack.conf.js --watch --progress --color",
-    "example": "webpack --config conf/webpack.conf.js --watch --progress --color --example",
+    "build": "webpack --config conf/webpack.conf.js --progress --color",
     "test": "echo \"Warning: no test specified yet\" && exit 0"
   },
   "author": "Salam Hiyali",
   "dependencies": {
-    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "vue": "^2.1.0"
+    "vue": "^2.5.2",
+    "vue-smooth-picker": "^0.3.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
     "babel-core": "^6.0.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.0.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.0.0",
     "cross-env": "^3.1.3",
