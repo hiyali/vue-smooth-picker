@@ -60,7 +60,6 @@
     "npm": ">= 3.0.0"
   },
   "files": [
-    "src/*",
     "dist/*",
     "README.md",
     "LICENSE"
