@@ -3,7 +3,7 @@
 
 [![npm package](https://img.shields.io/npm/v/vue-smooth-picker.svg)](https://npmjs.com/package/vue-smooth-picker)
 [![travis build](https://img.shields.io/travis/hiyali/vue-smooth-picker/master.svg)](https://travis-ci.org/hiyali/vue-smooth-picker)
-[![NPM downloads](http://img.shields.io/npm/dm/vue-smooth-picker.svg)](https://npmjs.org/package/vue-smooth-picker)
+[![NPM downloads](http://img.shields.io/npm/dt/vue-smooth-picker.svg)](https://npmjs.org/package/vue-smooth-picker)
 ![JS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/smooth-picker.js.svg?compression=gzip&label=gzip%20size:%20JS)
 ![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/css/style.css.svg?compression=gzip&label=gzip%20size:%20CSS)
 [![CircleCI](https://circleci.com/gh/hiyali/vue-smooth-picker/tree/master.svg?style=shield)](https://circleci.com/gh/hiyali/vue-smooth-picker/tree/master)
