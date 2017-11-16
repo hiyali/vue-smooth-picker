@@ -2,7 +2,8 @@
   <div class="smooth-picker flex-box">
 
     <!-- smooth-group-layer -->
-    <div ref="smoothGroup" v-for="(group, gIndex) in data" :key="gIndex" class="smooth-group" :class="getGroupClass(gIndex)">
+    <div ref="smoothGroup" v-for="(group, gIndex) in data" :key="gIndex"
+      class="smooth-group" :class="getGroupClass(gIndex)">
 
       <div class="smooth-list">
         <div v-if="group.divider" class="smooth-item divider" :class="getItemClass(gIndex, iIndex, true)">{{ group.text }}</div>
