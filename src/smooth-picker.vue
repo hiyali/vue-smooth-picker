@@ -93,7 +93,7 @@
         }
 
         // set group data
-        this.data[gIndex] = groupData
+        this.$set(this.data, gIndex, groupData)
       },
       getInitialCurrentIndexList () {
         return this.data.map((item, index) => {
