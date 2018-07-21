@@ -63,6 +63,12 @@
     "README.md",
     "LICENSE"
   ],
+  "keywords": [
+    "vue-smooth-picker",
+    "Vue",
+    "picker",
+    "plugin"
+  ],
   "repository": "https://github.com/hiyali/vue-smooth-picker.git",
   "license": "MIT"
 }
