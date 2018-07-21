@@ -1,10 +1,9 @@
 {
   "name": "vue-smooth-picker",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "A vue2 data picker that like native datetime picker",
   "main": "dist/smooth-picker.js",
   "scripts": {
-    "example": "webpack --config conf/webpack.conf.js --watch --progress --color --example",
     "dev": "webpack --config conf/webpack.conf.js --watch --progress --color",
     "build": "webpack --config conf/webpack.conf.js --progress --color --production",
     "prepare": "npm run build",
@@ -46,11 +45,11 @@
     "shelljs": "^0.7.4",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.5.1",
-    "url-loader": "^0.5.7",
+    "url-loader": "^1.0.1",
     "vue-loader": "^10.3.0",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^1.14.0",
-    "webpack-dashboard": "^0.2.0",
+    "webpack-dashboard": "^2.0.0",
     "webpack-dev-middleware": "^1.8.3",
     "webpack-hot-middleware": "^2.12.2",
     "webpack-merge": "^0.14.1"
