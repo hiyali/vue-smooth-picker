@@ -5,7 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var exampleName = process.argv[7]
 if (!exampleName) {
   console.error('Not give example name, you can enter\n' +
-    'npm run example product\n' +
+    'npm run build/dev product\n' +
     'Example names: product, datetime, gender')
   return 5
 }
