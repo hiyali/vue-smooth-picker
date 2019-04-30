@@ -1,56 +1,45 @@
-var path = require('path')
-var webpack = require('webpack')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
     'smooth-picker': './src'
   },
   output: {
-    path: './dist',
+    path: path.join(__dirname, '../dist'),
     publicPath: '',
     filename: '[name].js',
     library: 'SmoothPicker',
     libraryTarget: 'umd'
   },
   resolve: {
-    extensions: ['', '.js', '.vue'],
-    fallback: [path.join(__dirname, '../node_modules')],
+    extensions: ['.js', '.vue'],
     alias: {
       'src': path.resolve(__dirname, '../src'),
       'smooth-picker': path.resolve(__dirname, '../src')
     }
   },
   resolveLoader: {
-    fallback: [path.join(__dirname, '../node_modules')]
   },
   module: {
-    preLoaders: [
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.(vue|js)$/,
+        exclude: /node_modules|\.min\.js$/,
+        loader: 'eslint-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
       {
         test: /\.vue$/,
-        loader: 'eslint',
-        include: [
-          path.join(__dirname, '../src')
-        ],
-        exclude: /node_modules/
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
-        loader: 'eslint',
-        include: [
-          path.join(__dirname, '../src')
-        ],
-        exclude: /node_modules|\.min\.js$/
-      }
-    ],
-    loaders: [
-      {
-        test: /\.vue$/,
-        loader: 'vue'
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         include: [
           path.join(__dirname, '../src')
         ],
@@ -75,59 +64,30 @@ module.exports = {
           limit: 10000,
           name: 'dist/fonts/[name].[hash:7].[ext]'
         }
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development'
+            }
+          },
+          'css-loader',
+          // 'postcss-loader',
+          require('poststylus')(['autoprefixer', 'rucksack-css']),
+          'sass-loader'
+        ]
       }
     ]
   },
-  eslint: {
-    formatter: require('eslint-friendly-formatter')
-  },
-  stylus: {
-    use: [
-      require('poststylus')([ 'autoprefixer', 'rucksack-css' ])
-    ]
-  },
-  vue: {
-    loaders: {
-      css: ExtractTextPlugin.extract("css"),
-      stylus: ExtractTextPlugin.extract('css!stylus')
-    },
-    postcss: [
-      require('autoprefixer')({
-        browsers: ['last 8 versions']
-      })
-    ]
+  optimization: {
+    minimize: true
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      beautify: false,
-      compress: {
-        warnings      : false,
-        sequences     : true,  // join consecutive statemets with the “comma operator”
-        properties    : true,  // optimize property access: a["foo"] → a.foo
-        dead_code     : true,  // discard unreachable code
-        drop_debugger : true,  // discard “debugger” statements
-        drop_console  : true,  // discard “console” statements
-        unsafe        : true, // some unsafe optimizations (see below)
-        conditionals  : true,  // optimize if-s and conditional expressions
-        comparisons   : true,  // optimize comparisons
-        evaluate      : true,  // evaluate constant expressions
-        booleans      : true,  // optimize boolean expressions
-        loops         : true,  // optimize loops
-        unused        : true,  // drop unused variables/functions
-        hoist_funs    : true,  // hoist function declarations
-        hoist_vars    : true, // hoist variable declarations
-        if_return     : true,  // optimize if-s followed by return/continue
-        join_vars     : true,  // join var declarations
-        cascade       : true,  // try to cascade `right` into `left` in sequences
-        side_effects  : true,  // drop side-effect-free statements
-        global_defs   : {},
-        keep_fnames: true
-      },
-      output: {
-        comments: false
-      }
-    }),
-    new ExtractTextPlugin('css/style.css')
+    new MiniCssExtractPlugin({
+      filename: 'css/style.css'
+    })
   ]
 }

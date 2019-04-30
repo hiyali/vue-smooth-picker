@@ -40,6 +40,9 @@
     },
     data () {
       return {
+        gIndex: 0, // for suppress vue-loader warning
+        iIndex: 0, // for suppress vue-loader warning
+
         currentIndexList: this.getInitialCurrentIndexList(), // save groups's index
         lastCurrentIndexList: [], // for detect which group's current index if it is changed
 
