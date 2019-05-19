@@ -215,8 +215,10 @@
         }
       },
       handleMove (ev) {
-        ev.preventDefault()
-        ev.stopPropagation()
+        if (ev.cancelable) {
+          ev.preventDefault()
+          ev.stopPropagation()
+        }
 
         if (this.dragInfo.isTouchable || this.dragInfo.isMouseDown) {
           this.dragInfo.isDragging = true
@@ -224,8 +226,10 @@
         }
       },
       handleEnd (ev) {
-        ev.preventDefault()
-        ev.stopPropagation()
+        if (ev.cancelable) {
+          ev.preventDefault()
+          ev.stopPropagation()
+        }
 
         if (!this.dragInfo.isDragging) {
           this.handleEventClick(ev)
@@ -236,8 +240,10 @@
         this.correctionAfterDragging(ev)
       },
       handleCancel (ev) {
-        ev.preventDefault()
-        ev.stopPropagation()
+        if (ev.cancelable) {
+          ev.preventDefault()
+          ev.stopPropagation()
+        }
 
         if (this.dragInfo.isTouchable || this.dragInfo.isMouseDown) {
           this.correctionAfterDragging(ev)
