@@ -94,7 +94,7 @@ npm run build # build
 
 ## Donate
 
-![Become a sponser](https://opencollective.com/vue-smooth-picker/individuals.svg?width=890)
+[![Become a sponser](https://opencollective.com/vue-smooth-picker/individuals.svg?width=890)](https://opencollective.com/vue-smooth-picker#support)
 
 🌚 [A github star ⍟](https://github.com/hiyali/vue-smooth-picker)
 
