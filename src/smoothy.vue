@@ -2,7 +2,7 @@
   <div class="smooth-picker flex-box">
 
     <!-- smooth-group-layer -->
-    <div ref="smoothGroup" v-for="(group, gIndex) in data" :key="gIndex"
+    <div v-for="(group, gIndex) in data" :ref="el => { if (el) smoothGroup[gIndex] = el }" :key="gIndex"
       class="smooth-group" :class="getGroupClass(gIndex)">
 
       <div class="smooth-list">
@@ -26,16 +26,34 @@
 </template>
 
 <script>
+  import { ref, onBeforeUpdate } from 'vue'
+
   export default {
     name: 'smooth-picker',
+    emits: {
+      change: (gIndex, iIndex) => {
+        if (typeof gIndex === 'number' && typeof iIndex === 'number') {
+          return true
+        }
+        return false
+      }
+    },
     props: {
       data: {
         type: Array,
         default: []
-      },
-      change: {
-        type: Function,
-        default: () => {}
+      }
+    },
+    setup () {
+      const smoothGroup = ref([])
+
+      // make sure to reset the refs before each update
+      onBeforeUpdate(() => {
+        smoothGroup.value = []
+      })
+
+      return {
+        smoothGroup
       }
     },
     data () {
@@ -73,7 +91,7 @@
 
       window.addEventListener('resize', this.safeGetGroupRectList)
     },
-    destroyed () {
+    unmounted () {
       this.supInfo.watchDomObserver.disconnect()
 
       window.removeEventListener('resize', this.safeGetGroupRectList)
@@ -96,7 +114,7 @@
         }
 
         // set group data
-        this.$set(this.data, gIndex, groupData)
+        this.data[gIndex] = groupData
       },
       getInitialCurrentIndexList () {
         return this.data.map((item, index) => {
@@ -128,8 +146,8 @@
         }, 200)
       },
       getGroupsRectList () {
-        if (this.$refs.smoothGroup) {
-          this.$refs.smoothGroup.forEach((item, index) => {
+        if (this.smoothGroup) {
+          this.smoothGroup.forEach((item, index) => {
             this.groupsRectList[index] = item.getBoundingClientRect()
           })
         }
@@ -161,7 +179,7 @@
       },
       triggerAboveLayerClick (ev, gIndex) {
         const movedIndex = this.currentIndexList[gIndex] + 1
-        this.$set(this.currentIndexList, gIndex, movedIndex)
+        this.currentIndexList[gIndex] = movedIndex
         this.correctionCurrentIndex(ev, gIndex)
       },
       triggerMiddleLayerClick (ev, gIndex) {
@@ -169,7 +187,7 @@
       },
       triggerBelowLayerClick (ev, gIndex) {
         const movedIndex = this.currentIndexList[gIndex] - 1
-        this.$set(this.currentIndexList, gIndex, movedIndex)
+        this.currentIndexList[gIndex] = movedIndex
         this.correctionCurrentIndex(ev, gIndex)
       },
       getTouchInfo (ev) {
@@ -265,7 +283,7 @@
         const moveCount = (this.dragInfo.startPageY - touchInfo.pageY) / 32
         const movedIndex = this.currentIndexList[gIndex] + moveCount
 
-        this.$set(this.currentIndexList, gIndex, movedIndex)
+        this.currentIndexList[gIndex] = movedIndex
 
         this.dragInfo.startPageY = touchInfo.pageY
       },
@@ -289,9 +307,9 @@
             }
             movedIndex = Math.round(movedIndex)
 
-            this.$set(this.currentIndexList, gIndex, movedIndex)
+            this.currentIndexList[gIndex] = movedIndex
             if (movedIndex !== this.lastCurrentIndexList[gIndex]) {
-              this.change(gIndex, movedIndex)
+              this.$emit('change', gIndex, movedIndex)
             }
             this.lastCurrentIndexList = [].concat(this.currentIndexList)
           }
@@ -343,7 +361,6 @@
 </script>
 
 <style lang="stylus" scoped>
-
   r(val)
     (val / 16) * 1em
 
@@ -414,5 +431,4 @@
     for n in 1..12
       .flex-{n}
         flex: n
-
 </style>

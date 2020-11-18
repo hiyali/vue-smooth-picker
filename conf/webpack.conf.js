@@ -10,13 +10,13 @@ module.exports = function (args, options) {
   const PROD_MODE = options.mode === 'production'
   return {
     entry: {
-      'smooth-picker': './src'
+      'vue-smooth-picker': './src'
     },
     output: {
       path: path.join(__dirname, '../dist'),
       publicPath: './',
       filename: '[name].js',
-      library: 'SmoothPicker',
+      library: 'VueSmoothPicker',
       libraryTarget: 'umd'
     },
     resolve: {
