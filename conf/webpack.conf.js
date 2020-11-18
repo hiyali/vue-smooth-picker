@@ -6,8 +6,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-const exampleName = process.argv[8]
-if (!exampleName) {
+const exampleName = process.argv[process.argv.length - 1]
+
+if (!['datetime', 'gender', 'product'].includes(exampleName)) {
   console.error('Not give example name, you can enter\n' +
     'npm run build/dev product\n' +
     'Example names: product, datetime, gender')
