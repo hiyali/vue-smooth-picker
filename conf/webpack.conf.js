@@ -1,14 +1,18 @@
 'use strict'
 
 const path = require('path')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-module.exports = function (args, options) {
-  const PROD_MODE = options.mode === 'production'
+module.exports = function (args) { // , options , options.mode
+  const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+  console.log('IS_PRODUCTION:', IS_PRODUCTION)
+
   return {
+    mode: IS_PRODUCTION ? 'production' : 'development',
+    devtool: IS_PRODUCTION ? 'source-map' : 'cheap-module-eval-source-map',
     entry: {
       'vue-smooth-picker': './src'
     },
@@ -22,6 +26,7 @@ module.exports = function (args, options) {
     resolve: {
       extensions: ['.js', '.vue'],
       alias: {
+        // 'vue': 'vue/dist/vue.esm-bundler.js', // 'vue/dist/vue.runtime.esm-bundler.js',
         'src': path.resolve(__dirname, '../src'),
         'smooth-picker': path.resolve(__dirname, '../src')
       }
@@ -49,7 +54,7 @@ module.exports = function (args, options) {
         {
           test: /\.styl(us)?$/,
           use: [
-            PROD_MODE
+            IS_PRODUCTION
               ? MiniCssExtractPlugin.loader
               : 'vue-style-loader',
             { loader: 'css-loader', options: { importLoaders: 1 }},
@@ -69,7 +74,7 @@ module.exports = function (args, options) {
       ]
     },
     optimization: {
-      minimize: PROD_MODE,
+      minimize: IS_PRODUCTION,
       minimizer: [
         new TerserJSPlugin({}),
         new OptimizeCSSAssetsPlugin({})
@@ -78,7 +83,7 @@ module.exports = function (args, options) {
     plugins: [
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
-        filename: 'css/style.css'
+        filename: 'beauty.css'
       })
     ]
   }

@@ -4,7 +4,7 @@
 [![travis build](https://img.shields.io/travis/hiyali/vue-smooth-picker/master.svg)](https://travis-ci.org/hiyali/vue-smooth-picker)
 [![NPM downloads](http://img.shields.io/npm/dt/vue-smooth-picker.svg)](https://npmjs.org/package/vue-smooth-picker)
 ![JS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/smooth-picker.js.svg?compression=gzip&label=gzip:%20JS)
-![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/css/style.css.svg?compression=gzip&label=gzip:%20CSS)
+![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/beauty.css.svg?compression=gzip&label=gzip:%20CSS)
 
 [![NPM Description](https://nodei.co/npm/vue-smooth-picker.png?downloads=true&stars=true)](https://npmjs.org/package/vue-smooth-picker)
 
@@ -42,12 +42,12 @@ npm i -S vue-smooth-picker
 
 ```javascript
 // import and use
-import 'vue-smooth-picker/dist/css/style.css'
-import SmoothPicker from 'vue-smooth-picker'
-Vue.use(SmoothPicker)
+import 'vue-smooth-picker/dist/beauty.css'
+import { VueSmoothPicker } from 'vue-smooth-picker'
+app.component('VueSmoothPicker', VueSmoothPicker)
 ...
 // in your template
-<smooth-picker ref="smoothPicker" :data="data" :change="change" />
+<VueSmoothPicker ref="smoothPicker" :data="data" @change="change" />
 ```
 Or see: [example files](https://github.com/hiyali/vue-smooth-picker/blob/gh-pages/example/gender/)
 

@@ -2,7 +2,7 @@
   <div class="smooth-picker flex-box">
 
     <!-- smooth-group-layer -->
-    <div v-for="(group, gIndex) in data" :ref="el => { if (el) smoothGroup[gIndex] = el }" :key="gIndex"
+    <div v-for="(group, gIndex) in data" :ref="setSmoothGroupRef" :key="gIndex"
       class="smooth-group" :class="getGroupClass(gIndex)">
 
       <div class="smooth-list">
@@ -26,10 +26,10 @@
 </template>
 
 <script>
-  import { ref, onBeforeUpdate } from 'vue'
+  import { defineComponent, ref, onBeforeUpdate } from 'vue'
 
-  export default {
-    name: 'smooth-picker',
+  export default defineComponent({
+    name: 'vue-smooth-picker',
     emits: {
       change: (gIndex, iIndex) => {
         if (typeof gIndex === 'number' && typeof iIndex === 'number') {
@@ -45,22 +45,26 @@
       }
     },
     setup () {
-      const smoothGroup = ref([])
+      const smoothHandleLayer = ref(null)
+      let smoothGroup = ref([])
 
       // make sure to reset the refs before each update
       onBeforeUpdate(() => {
-        smoothGroup.value = []
+        smoothGroup = []
       })
 
+      const setSmoothGroupRef = el => {
+        smoothGroup.push(el)
+      }
+
       return {
+        smoothHandleLayer,
+        setSmoothGroupRef,
         smoothGroup
       }
     },
     data () {
       return {
-        gIndex: 0, // for suppress vue-loader warning
-        iIndex: 0, // for suppress vue-loader warning
-
         currentIndexList: this.getInitialCurrentIndexList(), // save groups's index
         lastCurrentIndexList: [], // for detect which group's current index if it is changed
 
@@ -85,7 +89,7 @@
     mounted () {
       this.eventsRegister()
 
-      this.$nextTick(this.getGroupsRectList())
+      this.$nextTick(this.getGroupsRectList)
       this.supInfo.watchDomObserver = this.createDomObserver()
       this.supInfo.watchDomObserver.observe(this.$el, { attributes: true })
 
@@ -133,7 +137,7 @@
               const elDisplay = this.$el.style.display
               if (elDisplay !== 'none' && this.supInfo.lastStyleDisplay !== elDisplay) {
                 this.supInfo.lastStyleDisplay = elDisplay
-                this.$nextTick(this.getGroupsRectList())
+                this.$nextTick(this.getGroupsRectList)
               }
             }
           })
@@ -153,7 +157,7 @@
         }
       },
       eventsRegister () {
-        const handleEventLayer = this.$refs.smoothHandleLayer
+        const handleEventLayer = this.smoothHandleLayer
         if (handleEventLayer) {
           this.addEventsForElement(handleEventLayer)
         }
@@ -357,7 +361,7 @@
         }
       }
     }
-  }
+  })
 </script>
 
 <style lang="stylus" scoped>
