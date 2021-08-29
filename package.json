@@ -1,6 +1,6 @@
 {
-  "name": "VueSmoothPicker",
-  "version": "1.0.0-alpha",
+  "name": "vue-smooth-picker",
+  "version": "1.0.0-alpha.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

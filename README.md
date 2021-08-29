@@ -44,11 +44,16 @@ app.use(VueSmoothPicker)
 ```
 Or see: [example files](https://github.com/hiyali/vue-smooth-picker/blob/gh-pages/example/gender/)
 
-## props
+## Event
 
 | name                       | type       |  default      | explain                          |
 | :------------------------- | :--------- | :------------ | :------------------------------- |
 | `change`                   | `Function` | ({ gIndex, iIndex }) => {} | Callback after data current index changed, pass one object, which has two keys, group index `gIndex` and item index `iIndex` |
+
+## Props
+
+| name                       | type       |  default      | explain                          |
+| :------------------------- | :--------- | :------------ | :------------------------------- |
 | `data`                     | `Array`    | []            | VueSmoothPicker initial data        |
 | `data[i].currentIndex`     | `Number`   | 0             | Current index of this group's list |
 | `data[i].flex`             | `Number`   | 1             | Group weights in parent width `1..12` |
@@ -60,7 +65,7 @@ Or see: [example files](https://github.com/hiyali/vue-smooth-picker/blob/gh-page
 | `data[i].divider`          | `Boolean`  | false         | If it is true, then `onClick` `list` `currentIndex` will be not used |
 | `data[i].text`             | `String`   | -             | Just used when `divider` is true |
 
-## Instance methods
+## Methods
 
 | name                       | type               | explain                          |
 | :------------------------- | :----------------- | :------------------------------- |
