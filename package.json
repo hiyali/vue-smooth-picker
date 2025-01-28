@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/vue-smooth-picker.git"
+    "url": "git+https://github.com/hiyali/vue-smooth-picker.git"
   },
   "files": [
     "dist"
