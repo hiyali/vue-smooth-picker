@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 
 interface PickerItem {
   value: string | number
@@ -53,7 +53,8 @@ const groupsRectList = ref<DOMRect[]>([])
 const smoothGroup = ref<HTMLElement[]>([])
 const smoothHandleLayer = ref<HTMLElement>()
 
-// Methods converted to composable functions...
+const lastStyleDisplay = ref<string | null>(null)
+const watchDomObserver = ref<MutationObserver | null>(null)
 
 // 获取组件尺寸信息
 const getGroupsRectList = () => {
@@ -84,19 +85,22 @@ const handleMove = (ev: MouseEvent | TouchEvent) => {
 
   if (dragInfo.value.isTouchable || dragInfo.value.isMouseDown) {
     dragInfo.value.isDragging = true
-    const touchInfo = dragInfo.value.isTouchable ? (ev as TouchEvent).touches[0] : ev as MouseEvent
+    const touchInfo = getTouchInfo(ev)
 
     if (dragInfo.value.groupIndex === null) {
-      dragInfo.value.groupIndex = getGroupIndexFromEvent(ev)
+      dragInfo.value.groupIndex = getGroupIndexBelongsEvent(ev)
     }
 
     const gIndex = dragInfo.value.groupIndex
-    if (typeof gIndex === 'number' && props.data[gIndex].divider !== true) {
-      const moveCount = (dragInfo.value.startPageY - touchInfo.pageY) / 32
-      const newIndex = currentIndexList.value[gIndex] + moveCount
-      currentIndexList.value[gIndex] = Math.max(0, Math.min(newIndex, (props.data[gIndex].list?.length || 1) - 1))
-      dragInfo.value.startPageY = touchInfo.pageY
+    if (typeof gIndex === 'number' && (props.data[gIndex].divider || !props.data[gIndex].list)) {
+      return
     }
+
+    const moveCount = (dragInfo.value.startPageY - touchInfo.pageY) / 32
+    const movedIndex = currentIndexList.value[gIndex] + moveCount
+    currentIndexList.value[gIndex] = movedIndex
+
+    dragInfo.value.startPageY = touchInfo.pageY
   }
 }
 
@@ -118,45 +122,32 @@ const handleEnd = (ev: MouseEvent | TouchEvent) => {
 const handleCancel = handleEnd
 
 const handleClick = (ev: MouseEvent | TouchEvent) => {
-  const gIndex = getGroupIndexFromEvent(ev)
+  const gIndex = getGroupIndexBelongsEvent(ev)
   const target = ev.target as HTMLElement
 
   switch (target.dataset.type) {
     case 'top':
-      moveUp(gIndex)
+      triggerAboveLayerClick(ev, gIndex)
       break
     case 'middle':
+      triggerMiddleLayerClick(ev, gIndex)
       break
     case 'bottom':
-      moveDown(gIndex)
+      triggerBelowLayerClick(ev, gIndex)
       break
   }
 }
 
-const moveUp = (gIndex: number) => {
-  if (typeof gIndex === 'number' && !props.data[gIndex].divider) {
-    const newIndex = Math.min(
-      currentIndexList.value[gIndex] + 1,
-      (props.data[gIndex].list?.length || 1) - 1
-    )
-    currentIndexList.value[gIndex] = newIndex
-    emit('onChange', gIndex, newIndex)
-  }
+const getTouchInfo = (ev: MouseEvent | TouchEvent) => {
+  return dragInfo.value.isTouchable ? (ev as TouchEvent).changedTouches[0] || (ev as TouchEvent).touches[0] : ev
 }
 
-const moveDown = (gIndex: number) => {
-  if (typeof gIndex === 'number' && !props.data[gIndex].divider) {
-    const newIndex = Math.max(currentIndexList.value[gIndex] - 1, 0)
-    currentIndexList.value[gIndex] = newIndex
-    emit('onChange', gIndex, newIndex)
-  }
-}
+const getGroupIndexBelongsEvent = (ev: MouseEvent | TouchEvent) => {
+  const touchInfo = getTouchInfo(ev)
 
-const getGroupIndexFromEvent = (ev: MouseEvent | TouchEvent) => {
-  const touchInfo = dragInfo.value.isTouchable ? (ev as TouchEvent).touches[0] : ev as MouseEvent
   for (let i = 0; i < groupsRectList.value.length; i++) {
     const rect = groupsRectList.value[i]
-    if (rect.left <= touchInfo.pageX && touchInfo.pageX <= rect.right) {
+    if (rect.left < touchInfo.pageX && touchInfo.pageX < rect.right) {
       return i
     }
   }
@@ -165,10 +156,22 @@ const getGroupIndexFromEvent = (ev: MouseEvent | TouchEvent) => {
 
 const correctionAfterDragging = () => {
   const gIndex = dragInfo.value.groupIndex
-  if (typeof gIndex === 'number' && !props.data[gIndex].divider) {
-    const newIndex = Math.round(currentIndexList.value[gIndex])
-    currentIndexList.value[gIndex] = Math.max(0, Math.min(newIndex, (props.data[gIndex].list?.length || 1) - 1))
-    emit('onChange', gIndex, currentIndexList.value[gIndex])
+  if (typeof gIndex === 'number' && props.data[gIndex].divider !== true && props.data[gIndex].list.length > 0) {
+    const unsafeGroupIndex = currentIndexList.value[gIndex]
+
+    let movedIndex = unsafeGroupIndex
+    if (unsafeGroupIndex > props.data[gIndex].list.length - 1) {
+      movedIndex = props.data[gIndex].list.length - 1
+    } else if (unsafeGroupIndex < 0) {
+      movedIndex = 0
+    }
+    movedIndex = Math.round(movedIndex)
+
+    currentIndexList.value[gIndex] = movedIndex
+    if (movedIndex !== lastCurrentIndexList.value[gIndex]) {
+      emit('onChange', gIndex, movedIndex)
+    }
+    lastCurrentIndexList.value = [...currentIndexList.value]
   }
   dragInfo.value.groupIndex = null
   dragInfo.value.startPageY = null
@@ -210,9 +213,108 @@ const getItemClass = (gIndex: number, iIndex: number, isDevider = false) => {
   return itemClass
 }
 
+const triggerMiddleLayerGroupClick = (gIndex: number) => {
+  const data = props.data
+  if (typeof gIndex === 'number' && typeof data[gIndex].onClick === 'function') {
+    data[gIndex].onClick(gIndex, currentIndexList.value[gIndex])
+  }
+}
+
+const triggerAboveLayerClick = (ev: MouseEvent | TouchEvent, gIndex: number) => {
+  const movedIndex = currentIndexList.value[gIndex] + 1
+  currentIndexList.value[gIndex] = movedIndex
+  correctionCurrentIndex(ev, gIndex)
+}
+
+const triggerMiddleLayerClick = (ev: MouseEvent | TouchEvent, gIndex: number) => {
+  triggerMiddleLayerGroupClick(gIndex)
+}
+
+const triggerBelowLayerClick = (ev: MouseEvent | TouchEvent, gIndex: number) => {
+  const movedIndex = currentIndexList.value[gIndex] - 1
+  currentIndexList.value[gIndex] = movedIndex
+  correctionCurrentIndex(ev, gIndex)
+}
+
+const correctionCurrentIndex = (ev: MouseEvent | TouchEvent, gIndex: number) => {
+  setTimeout(() => {
+    if (typeof gIndex === 'number' && props.data[gIndex].divider !== true && props.data[gIndex].list.length > 0) {
+      const unsafeGroupIndex = currentIndexList.value[gIndex]
+
+      let movedIndex = unsafeGroupIndex
+      if (unsafeGroupIndex > props.data[gIndex].list.length - 1) {
+        movedIndex = props.data[gIndex].list.length - 1
+      } else if (unsafeGroupIndex < 0) {
+        movedIndex = 0
+      }
+      movedIndex = Math.round(movedIndex)
+
+      currentIndexList.value[gIndex] = movedIndex
+      if (movedIndex !== lastCurrentIndexList.value[gIndex]) {
+        emit('onChange', gIndex, movedIndex)
+      }
+      lastCurrentIndexList.value = [...currentIndexList.value]
+    }
+  }, 100)
+}
+
+const setGroupData = (gIndex: number, groupData: PickerGroup) => {
+  // for current index list
+  const iCI = groupData.currentIndex
+  let movedIndex = 0
+  if (typeof iCI === 'number' && iCI >= 0 && groupData.list && groupData.list.length && iCI <= groupData.list.length - 1) {
+    movedIndex = Math.round(iCI)
+  }
+  currentIndexList.value[gIndex] = movedIndex
+  lastCurrentIndexList.value = [...currentIndexList.value]
+
+  // for detect group flex if changed
+  const gF = groupData.flex
+  if (gF && props.data[gIndex].flex !== gF) {
+    safeGetGroupRectList()
+  }
+
+  // set group data
+  props.data[gIndex] = groupData
+}
+
+const safeGetGroupRectList = () => {
+  if (getRectTimeoutId.value !== null) {
+    clearTimeout(getRectTimeoutId.value)
+  }
+  getRectTimeoutId.value = setTimeout(() => {
+    getGroupsRectList()
+  }, 200)
+}
+
+const getRectTimeoutId = ref<number | null>(null)
+
+const createDomObserver = () => {
+  return new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes') {
+        // for get correct rect list after v-show true (when $el style display not none)
+        const el = mutation.target as HTMLElement
+        const elDisplay = el.style.display
+        if (elDisplay !== 'none' && lastStyleDisplay.value !== elDisplay) {
+          lastStyleDisplay.value = elDisplay
+          nextTick(getGroupsRectList)
+        }
+      }
+    })
+  })
+}
+
+const getCurrentIndexList = () => {
+  return currentIndexList.value
+}
+
 // 生命周期钩子
 onMounted(() => {
   getGroupsRectList()
+  nextTick(getGroupsRectList)
+  watchDomObserver.value = createDomObserver()
+  watchDomObserver.value.observe(smoothHandleLayer.value as HTMLElement, { attributes: true })
   window.addEventListener('resize', getGroupsRectList)
 
   if (smoothHandleLayer.value) {
@@ -237,6 +339,12 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  if (getRectTimeoutId.value !== null) {
+    clearTimeout(getRectTimeoutId.value)
+  }
+  if (watchDomObserver.value) {
+    watchDomObserver.value.disconnect()
+  }
   window.removeEventListener('resize', getGroupsRectList)
 
   if (smoothHandleLayer.value) {
@@ -266,7 +374,7 @@ onBeforeUnmount(() => {
     <div ref="smoothGroup" v-for="(group, gIndex) in data" :key="gIndex" class="smooth-group"
       :class="getGroupClass(gIndex)">
       <div class="smooth-list">
-        <div v-if="group.divider" class="smooth-item divider" :class="getItemClass(gIndex, iIndex, true)">{{
+        <div v-if="group.divider" class="smooth-item divider" :class="getItemClass(gIndex, 0, true)">{{
           group.text }}</div>
         <div v-else v-for="(item, iIndex) in group.list" :key="iIndex" class="smooth-item"
           :class="getItemClass(gIndex, iIndex)" :style="getItemStyle(gIndex, iIndex)">

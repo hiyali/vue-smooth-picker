@@ -34,7 +34,7 @@
         /* Vue */
         "types": [
             "vite/client",
-            "@types/vue"
+            "vue"
         ]
     },
     "include": [
