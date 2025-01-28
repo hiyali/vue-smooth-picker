@@ -92,10 +92,16 @@ const handleMove = (ev: MouseEvent | TouchEvent) => {
     }
 
     const gIndex = dragInfo.value.groupIndex
-    if (typeof gIndex === 'number' && (props.data[gIndex].divider || !props.data[gIndex].list)) {
+    if (typeof gIndex !== 'number') {
+      return
+    }
+    if (props.data[gIndex].divider || !props.data[gIndex].list) {
       return
     }
 
+    if (!dragInfo.value.startPageY || !('pageY' in touchInfo)) {
+      return
+    }
     const moveCount = (dragInfo.value.startPageY - touchInfo.pageY) / 32
     const movedIndex = currentIndexList.value[gIndex] + moveCount
     currentIndexList.value[gIndex] = movedIndex
@@ -125,6 +131,10 @@ const handleClick = (ev: MouseEvent | TouchEvent) => {
   const gIndex = getGroupIndexBelongsEvent(ev)
   const target = ev.target as HTMLElement
 
+  if (typeof gIndex !== "number") {
+    return
+  }
+
   switch (target.dataset.type) {
     case 'top':
       triggerAboveLayerClick(ev, gIndex)
@@ -144,6 +154,9 @@ const getTouchInfo = (ev: MouseEvent | TouchEvent) => {
 
 const getGroupIndexBelongsEvent = (ev: MouseEvent | TouchEvent) => {
   const touchInfo = getTouchInfo(ev)
+  if (!('pageX' in touchInfo)) {
+    return null
+  }
 
   for (let i = 0; i < groupsRectList.value.length; i++) {
     const rect = groupsRectList.value[i]
@@ -156,7 +169,7 @@ const getGroupIndexBelongsEvent = (ev: MouseEvent | TouchEvent) => {
 
 const correctionAfterDragging = () => {
   const gIndex = dragInfo.value.groupIndex
-  if (typeof gIndex === 'number' && props.data[gIndex].divider !== true && props.data[gIndex].list.length > 0) {
+  if (typeof gIndex === 'number' && props.data[gIndex].divider !== true && props.data[gIndex].list && props.data[gIndex].list.length > 0) {
     const unsafeGroupIndex = currentIndexList.value[gIndex]
 
     let movedIndex = unsafeGroupIndex
@@ -238,7 +251,11 @@ const triggerBelowLayerClick = (ev: MouseEvent | TouchEvent, gIndex: number) => 
 
 const correctionCurrentIndex = (ev: MouseEvent | TouchEvent, gIndex: number) => {
   setTimeout(() => {
-    if (typeof gIndex === 'number' && props.data[gIndex].divider !== true && props.data[gIndex].list.length > 0) {
+    if (typeof gIndex !== 'number' || !props.data[gIndex] || !props.data[gIndex].list) {
+      return
+    }
+
+    if (props.data[gIndex].divider !== true && props.data[gIndex].list.length > 0) {
       const unsafeGroupIndex = currentIndexList.value[gIndex]
 
       let movedIndex = unsafeGroupIndex
@@ -308,6 +325,13 @@ const createDomObserver = () => {
 const getCurrentIndexList = () => {
   return currentIndexList.value
 }
+
+// 使用 defineExpose 来暴露 setGroupData 方法
+defineExpose({
+  setGroupData,
+  getCurrentIndexList,
+  getGroupsRectList
+})
 
 // 生命周期钩子
 onMounted(() => {

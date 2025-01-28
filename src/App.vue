@@ -2,14 +2,16 @@
     <div>
         <h1>Vue3 Smooth Picker Demo</h1>
         <div class="demo-picker">
-            <smooth-picker :data="pickerData" @onChange="handleChange" />
+            <smooth-picker ref="smoothPicker" :data="pickerData" @onChange="handleChange" />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import SmoothPicker from './components/SmoothPicker.vue'
+
+const smoothPicker = ref(null)
 
 const pickerData = ref([
     {
@@ -25,6 +27,9 @@ const pickerData = ref([
 const handleChange = (groupIndex: number, itemIndex: number) => {
     console.log('Changed:', { groupIndex, itemIndex })
 }
+onMounted(() => {
+    console.log(smoothPicker.value)
+})
 </script>
 
 <style>
