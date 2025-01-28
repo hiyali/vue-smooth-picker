@@ -1,75 +1,57 @@
 {
   "name": "vue-smooth-picker",
-  "version": "0.4.2",
-  "description": "A vue2 data picker that like native datetime picker",
-  "main": "dist/smooth-picker.js",
-  "scripts": {
-    "dev": "./node_modules/.bin/webpack --config conf/webpack.conf.js --watch --progress --color --mode development",
-    "build": "./node_modules/.bin/webpack --config conf/webpack.conf.js --progress --color --mode production",
-    "prepare": "npm run build",
-    "test": "echo \"Warning: no test specified yet\" && exit 0"
-  },
+  "version": "1.0.0-beta.1",
+  "type": "module",
+  "description": "A smooth picker component for Vue 3",
   "author": "Salam Hiyali",
-  "dependencies": {
-    "vue": "^2.5.2"
-  },
-  "devDependencies": {
-    "autoprefixer": "6.7.7",
-    "babel-core": "6.26.0",
-    "babel-eslint": "7.2.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "1.7.0",
-    "babel-register": "6.26.0",
-    "cross-env": "3.2.4",
-    "css-loader": "^2.1.1",
-    "eslint": "3.19.0",
-    "eslint-config-standard": "^6.1.0",
-    "eslint-config-vue": "^2.0.1",
-    "eslint-friendly-formatter": "^2.0.5",
-    "eslint-loader": "^2.1.2",
-    "eslint-plugin-html": "^1.3.0",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1",
-    "eslint-plugin-vue": "^1.0.0",
-    "file-loader": "^0.9.0",
-    "friendly-errors-webpack-plugin": "^1.1.2",
-    "function-bind": "^1.0.2",
-    "html-webpack-plugin": "^2.8.1",
-    "http-proxy-middleware": "^0.19.1",
-    "imports-loader": "^0.7.0",
-    "inject-loader": "^2.0.1",
-    "json-loader": "^0.5.4",
-    "mini-css-extract-plugin": "^0.6.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "postcss-loader": "^3.0.0",
-    "shelljs": "^0.8.5",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
-    "url-loader": "^1.0.1",
-    "vue-loader": "^15.7.0",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1",
-    "webpack-dashboard": "^2.0.0",
-    "webpack-dev-middleware": "^1.8.3",
-    "webpack-hot-middleware": "^2.12.2",
-    "webpack-merge": "^0.14.1"
-  },
-  "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 4.0.0"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/vue-smooth-picker.git"
   },
   "files": [
-    "dist/*",
-    "README.md",
-    "LICENSE"
+    "dist"
   ],
+  "main": "./dist/vue-smooth-picker.umd.cjs",
+  "module": "./dist/vue-smooth-picker.js",
+  "unpkg": "./dist/vue-smooth-picker.umd.cjs",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-smooth-picker.js",
+      "require": "./dist/vue-smooth-picker.umd.cjs"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
+  "scripts": {
+    "dev": "vite serve",
+    "build": "vite build && cp package.json README.md LICENSE dist/",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "@vitejs/plugin-vue": "^5.0.3",
+    "@types/vue": "^2.0.0",
+    "typescript": "^5.0.2",
+    "vite": "^5.0.12",
+    "vue-tsc": "^1.8.27",
+    "stylus": "^0.54.5",
+    "vue": "^3.4.15"
+  },
   "keywords": [
     "vue-smooth-picker",
-    "Vue",
+    "Vue3",
     "picker",
-    "plugin"
-  ],
-  "repository": "https://github.com/hiyali/vue-smooth-picker.git",
-  "license": "MIT"
+    "datetime picker",
+    "vue3-component",
+    "vue3-picker"
+  ]
 }

@@ -1,102 +1,167 @@
-# vue-smooth-picker  <sup>[![Version Badge](http://versionbadg.es/hiyali/vue-smooth-picker.svg)](https://npmjs.com/package/vue-smooth-picker)</sup>
-🏄🏼 A SmoothPicker for Vue 2
+# vue-smooth-picker
 
-[![travis build](https://img.shields.io/travis/hiyali/vue-smooth-picker/master.svg)](https://travis-ci.org/hiyali/vue-smooth-picker)
-[![NPM downloads](http://img.shields.io/npm/dt/vue-smooth-picker.svg)](https://npmjs.org/package/vue-smooth-picker)
-![JS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/smooth-picker.js.svg?compression=gzip&label=gzip:%20JS)
-![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/css/style.css.svg?compression=gzip&label=gzip:%20CSS)
+A smooth picker component for Vue 3.
 
-[![NPM Description](https://nodei.co/npm/vue-smooth-picker.png?downloads=true&stars=true)](https://npmjs.org/package/vue-smooth-picker)
+> Looking for Vue 2 version? Check out [vue-smooth-picker for Vue 2](https://github.com/hiyali/vue-smooth-picker/tree/master)
 
-> Let's more easily select some data on the touch screen device, such as time / city / gender / seat number / product / ...
+## Features
+- 🎯 Vue 3 Support
+- 💪 TypeScript Support
+- 🎨 Customizable styles
+- 📱 Touch-friendly
+- 🔄 Smooth animations
 
-## Take a look
+## Demo (Deprecated / No longer maintained)
 
-Demo links:
-[Product](https://hiyali.github.io/vue-smooth-picker/example/product)
-| [Datetime](https://hiyali.github.io/vue-smooth-picker/example/datetime)
-| [Gender](https://hiyali.github.io/vue-smooth-picker/example/gender)
+Vue 2 version demos (Vue 3 demos coming soon):
+- [Product Picker](https://hiyali.github.io/vue-smooth-picker/example/product)
+- [Datetime Picker](https://hiyali.github.io/vue-smooth-picker/example/datetime)
+- [Gender Picker](https://hiyali.github.io/vue-smooth-picker/example/gender)
 
-Demo code links:
-[Product](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/product)
-| [Datetime](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/datetime)
-| [Gender](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/gender)
+## Installation
 
-![Screen shot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screenshot.png "screenshot")
-
-![Screen record](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screen-record.gif "screen record")
-
-## Install
-
-```shell
-npm i -S vue-smooth-picker
+```bash
+npm install vue-smooth-picker@3
 ```
 
 ## Usage
 
-> [English usage docs](https://github.com/hiyali/vue-smooth-picker/wiki/Usage)
+```vue
+<template>
+  <smooth-picker
+    :data="pickerData"
+    @onChange="handleChange"
+  />
+</template>
 
-> [中文使用文档](https://github.com/hiyali/vue-smooth-picker/wiki/Usage_zh)
+<script setup>
+import { ref } from 'vue'
+import { SmoothPicker } from 'vue-smooth-picker'
+import 'vue-smooth-picker/style.css'
 
-### Quick look
+const pickerData = ref([
+  {
+    list: Array.from({ length: 24 }, (_, i) => ({ value: i.toString().padStart(2, '0') })),
+    currentIndex: 0
+  },
+  {
+    list: Array.from({ length: 60 }, (_, i) => ({ value: i.toString().padStart(2, '0') })),
+    currentIndex: 0
+  }
+])
 
-```javascript
-// import and use
-import 'vue-smooth-picker/dist/css/style.css'
-import SmoothPicker from 'vue-smooth-picker'
-Vue.use(SmoothPicker)
-...
-// in your template
-<smooth-picker ref="smoothPicker" :data="data" :change="change" />
+const handleChange = (groupIndex, itemIndex) => {
+  console.log('Changed:', { groupIndex, itemIndex })
+}
+</script>
 ```
-Or see: [example files](https://github.com/hiyali/vue-smooth-picker/blob/gh-pages/example/gender/)
 
-## props
+## Props
 
-| name                       | type       |  default      | explain                          |
-| :------------------------- | :--------- | :------------ | :------------------------------- |
-| `change`                   | `Function` | (gIndex, iIndex) => {} | Callback after data current index changed, pass two arguments, group index `gIndex` and item index `iIndex` |
-| `data`                     | `Array`    | []            | SmoothPicker initial data        |
-| `data[i].currentIndex`     | `Number`   | 0             | Current index of this group's list |
-| `data[i].flex`             | `Number`   | 1             | Group weights in parent width `1..12` |
-| `data[i].list`             | `Array`    | -             | List of the group                |
-| `data[i].list[j]`          | `String` or `Object` | -   | Item in the list of group, use `value` key when it is a object item |
-| `data[i].onClick`          | `Function` | -             | Click event on the middle layer of this group, pass two arguments, this group index `gIndex` and selected index `iIndex` of this group |
-| `data[i].textAlign`        | `String`   | -             | `left` `center` or `right` in item block |
-| `data[i].className`        | `String`   | -             | Your custom class name for this group |
-| `data[i].divider`          | `Boolean`  | false         | If it is true, then `onClick` `list` `currentIndex` will be not used |
-| `data[i].text`             | `String`   | -             | Just used when `divider` is true |
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| data | Array | [] | Picker data array |
+| onChange | Function | () => {} | Change callback |
 
-## Instance methods
+### Data Structure
 
-| name                       | type               | explain                          |
-| :------------------------- | :----------------- | :------------------------------- |
-| `setGroupData`             | `Function` => void | Dynamically set a group data with two arguments `(gIndex, gData)`, group index and group data (see props `data[i]`) |
-| `getCurrentIndexList`      | `Function` => []   | Return a `Array` of the groups current index list (has divider current index, and it is default to `0`) |
-| `getGroupsRectList`        | `Function` => void | Get some info for gesture, you can call this function when the component displayed if the component is hidden when it's initialization |
+```typescript
+interface PickerItem {
+  value: string | number
+  [key: string]: any
+}
 
-## Development
+interface PickerGroup {
+  list?: PickerItem[]
+  divider?: boolean
+  text?: string
+  flex?: number
+  className?: string
+  textAlign?: string
+  currentIndex?: number
+  onClick?: (groupIndex: number, itemIndex: number) => void
+}
 
-```shell
-npm run dev # development
-npm run build # build
+interface Props {
+  data: PickerGroup[]
+  onChange?: (groupIndex: number, itemIndex: number) => void
+}
+```
+
+## Instance Methods
+
+| Name | Type | Description |
+|------|------|-------------|
+| setGroupData | (groupIndex: number, groupData: PickerGroup) => void | Dynamically set a group's data |
+| getCurrentIndexList | () => number[] | Get current index list of all groups |
+| getGroupsRectList | () => void | Update groups rect list, call this when component visibility changes |
+
+### Example
+
+```vue
+<template>
+  <smooth-picker ref="picker" :data="pickerData" @onChange="handleChange" />
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const picker = ref(null)
+const pickerData = ref([
+  {
+    list: Array.from({ length: 24 }, (_, i) => ({ value: i.toString().padStart(2, '0') })),
+    currentIndex: 0
+  },
+  {
+    list: Array.from({ length: 60 }, (_, i) => ({ value: i.toString().padStart(2, '0') })),
+    currentIndex: 0
+  }
+])
+
+onMounted(() => {
+  // Set data for first group
+  picker.value?.setGroupData(0, {
+    list: [{ value: '01' }, { value: '02' }],
+    currentIndex: 0
+  })
+
+  // Get current selected indexes
+  const indexes = picker.value?.getCurrentIndexList()
+  console.log('Current indexes:', indexes)
+
+  // Update rects after visibility change
+  picker.value?.getGroupsRectList()
+})
+</script>
 ```
 
 ## Examples
 
-> See branch gh-pages.
+### Time Picker
+```vue
+<template>
+  <smooth-picker :data="timeData" @onChange="handleTimeChange" />
+</template>
 
-## Any problem?
+<script setup>
+import { ref } from 'vue'
 
-> Please let me know.
-* [Open a new issue for this repo](https://github.com/hiyali/vue-smooth-picker/issues)
-* [Send a Email to: hiyali920@gmail.com](mailto:hiyali920@gmail.com)
-
-## Donate
-
-[![Become a sponser](https://opencollective.com/vue-smooth-picker/individuals.svg?width=890)](https://opencollective.com/vue-smooth-picker#support)
-
-🌚 [A github star ⍟](https://github.com/hiyali/vue-smooth-picker)
+const timeData = ref([
+  {
+    list: Array.from({ length: 24 }, (_, i) => ({ value: i.toString().padStart(2, '0') })),
+    currentIndex: 0
+  },
+  {
+    divider: true,
+    text: ':'
+  },
+  {
+    list: Array.from({ length: 60 }, (_, i) => ({ value: i.toString().padStart(2, '0') })),
+    currentIndex: 0
+  }
+])
+</script>
+```
 
 ## License
 
