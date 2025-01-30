@@ -3,8 +3,8 @@
 
 [![travis build](https://img.shields.io/travis/hiyali/vue-smooth-picker/master.svg)](https://travis-ci.org/hiyali/vue-smooth-picker)
 [![NPM downloads](http://img.shields.io/npm/dt/vue-smooth-picker.svg)](https://npmjs.org/package/vue-smooth-picker)
-![JS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/smooth-picker.js.svg?compression=gzip&label=gzip:%20JS)
-![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/css/style.css.svg?compression=gzip&label=gzip:%20CSS)
+![JS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages-v2/dist/smooth-picker.js.svg?compression=gzip&label=gzip:%20JS)
+![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages-v2/dist/css/style.css.svg?compression=gzip&label=gzip:%20CSS)
 
 [![NPM Description](https://nodei.co/npm/vue-smooth-picker.png?downloads=true&stars=true)](https://npmjs.org/package/vue-smooth-picker)
 
@@ -12,15 +12,15 @@
 
 ## Take a look
 
-Demo links:
+Demo links (deprecated):
 [Product](https://hiyali.github.io/vue-smooth-picker/example/product)
 | [Datetime](https://hiyali.github.io/vue-smooth-picker/example/datetime)
 | [Gender](https://hiyali.github.io/vue-smooth-picker/example/gender)
 
 Demo code links:
-[Product](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/product)
-| [Datetime](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/datetime)
-| [Gender](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/gender)
+[Product](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages-v2/example/product)
+| [Datetime](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages-v2/example/datetime)
+| [Gender](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages-v2/example/gender)
 
 ![Screen shot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screenshot.png "screenshot")
 
@@ -29,7 +29,7 @@ Demo code links:
 ## Install
 
 ```shell
-npm i -S vue-smooth-picker
+npm i -S vue-smooth-picker@vue2
 ```
 
 ## Usage
