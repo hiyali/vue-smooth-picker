@@ -1,6 +1,6 @@
 {
   "name": "vue-smooth-picker-example",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.8",
   "description": "Examples of a Vue 3 data picker that behaves like a native datetime picker",
   "scripts": {
     "dev:datetime": "vite --config vite.config.ts --mode datetime",
