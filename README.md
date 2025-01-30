@@ -1,6 +1,14 @@
 # vue-smooth-picker
 
-A smooth picker component for Vue 3.
+🏄🏼 A smooth picker component for Vue 3.
+
+[![NPM downloads](http://img.shields.io/npm/dt/vue-smooth-picker.svg)](https://npmjs.org/package/vue-smooth-picker)
+![JS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/smooth-picker.js.svg?compression=gzip&label=gzip:%20JS)
+![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/css/style.css.svg?compression=gzip&label=gzip:%20CSS)
+
+[![NPM Description](https://nodei.co/npm/vue-smooth-picker.png?downloads=true&stars=true)](https://npmjs.org/package/vue-smooth-picker)
+
+> Let's simplify selecting data on the touchscreen device, such as time, city, gender, seat number, product, etc.
 
 ## Features
 - 🎯 Vue 3 Support
@@ -19,10 +27,7 @@ npm i -S vue-smooth-picker@next
 
 ```vue
 <template>
-  <smooth-picker
-    :data="pickerData"
-    @onChange="handleChange"
-  />
+  <smooth-picker :data="pickerData" @onChange="handleChange" />
 </template>
 
 <script setup>
