@@ -20,7 +20,7 @@
 ## Installation
 
 ```bash
-npm i -S vue-smooth-picker@next
+npm i -S vue-smooth-picker
 ```
 
 ### Examples
