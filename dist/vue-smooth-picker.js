@@ -1,5 +1,8 @@
-import { defineComponent as J, ref as u, onMounted as K, nextTick as S, onBeforeUnmount as Q, openBlock as v, createElementBlock as f, Fragment as B, renderList as O, normalizeClass as M, createElementVNode as g, toDisplayString as X, normalizeStyle as W } from "vue";
-const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te = /* @__PURE__ */ J({
+import { defineComponent as K, ref as u, onMounted as Q, nextTick as S, onBeforeUnmount as W, openBlock as v, createElementBlock as f, Fragment as B, renderList as O, normalizeClass as M, createElementVNode as g, toDisplayString as X, normalizeStyle as Z } from "vue";
+const ee = { class: "smooth-picker flex-box" }, te = { class: "smooth-list" }, ae = /* @__PURE__ */ K({
+  name: "smooth-picker",
+  owner: "Salam Hiyali",
+  inheritAttrs: !1,
   __name: "SmoothPicker",
   props: {
     data: { default: () => [] },
@@ -45,10 +48,10 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
             j(e, t);
             break;
           case "middle":
-            H(e, t);
+            U(e, t);
             break;
           case "bottom":
-            U(e, t);
+            V(e, t);
             break;
         }
     }, G = (e) => n.value.isTouchable ? e.changedTouches[0] || e.touches[0] : e, P = (e) => {
@@ -76,7 +79,7 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
         return n.value.isDragging || (o += " transition: transform 150ms ease-out;"), o;
       }
       return a > 0 ? "transform: rotateX(90deg) translate3d(0, 0, 5.625em)" : "transform: rotateX(-90deg) translate3d(0, 0, 5.625em)";
-    }, A = (e) => {
+    }, H = (e) => {
       const t = s.data[e], o = ["flex-" + (t.flex || 1)];
       return t.className && o.push(t.className), o;
     }, Y = (e, t, a = !1) => {
@@ -88,9 +91,9 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
     }, j = (e, t) => {
       const a = l.value[t] + 1;
       l.value[t] = a, I(e, t);
-    }, H = (e, t) => {
-      N(t);
     }, U = (e, t) => {
+      N(t);
+    }, V = (e, t) => {
       const a = l.value[t] - 1;
       l.value[t] = a, I(e, t);
     }, I = (e, t) => {
@@ -101,17 +104,17 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
           a > s.data[t].list.length - 1 ? o = s.data[t].list.length - 1 : a < 0 && (o = 0), o = Math.round(o), l.value[t] = o, o !== m.value[t] && b("onChange", t, o), m.value = [...l.value];
         }
       }, 100);
-    }, V = (e, t) => {
+    }, $ = (e, t) => {
       const a = t.currentIndex;
       let o = 0;
       typeof a == "number" && a >= 0 && t.list && t.list.length && a <= t.list.length - 1 && (o = Math.round(a)), l.value[e] = o, m.value = [...l.value];
       const r = t.flex;
-      r && s.data[e].flex !== r && $(), s.data[e] = t;
-    }, $ = () => {
+      r && s.data[e].flex !== r && q(), s.data[e] = t;
+    }, q = () => {
       p.value !== null && clearTimeout(p.value), p.value = setTimeout(() => {
         i();
       }, 200);
-    }, p = u(null), q = () => new MutationObserver((e) => {
+    }, p = u(null), J = () => new MutationObserver((e) => {
       e.forEach((t) => {
         if (t.type === "attributes") {
           const o = t.target.style.display;
@@ -120,11 +123,11 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
       });
     });
     return w({
-      setGroupData: V,
+      setGroupData: $,
       getCurrentIndexList: () => l.value,
       getGroupsRectList: i
-    }), K(() => {
-      if (i(), S(i), C.value = q(), C.value.observe(d.value, { attributes: !0 }), window.addEventListener("resize", i), d.value) {
+    }), Q(() => {
+      if (i(), S(i), C.value = J(), C.value.observe(d.value, { attributes: !0 }), window.addEventListener("resize", i), d.value) {
         const e = n.value.isTouchable ? {
           touchstart: k,
           touchmove: x,
@@ -141,7 +144,7 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
           (o = d.value) == null || o.addEventListener(t, a);
         });
       }
-    }), Q(() => {
+    }), W(() => {
       if (p.value !== null && clearTimeout(p.value), C.value && C.value.disconnect(), window.removeEventListener("resize", i), d.value) {
         const e = n.value.isTouchable ? {
           touchstart: k,
@@ -159,22 +162,22 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
           (o = d.value) == null || o.removeEventListener(t, a);
         });
       }
-    }), (e, t) => (v(), f("div", Z, [
+    }), (e, t) => (v(), f("div", ee, [
       (v(!0), f(B, null, O(e.data, (a, o) => (v(), f("div", {
         ref_for: !0,
         ref_key: "smoothGroup",
         ref: T,
         key: o,
-        class: M(["smooth-group", A(o)])
+        class: M(["smooth-group", H(o)])
       }, [
-        g("div", ee, [
+        g("div", te, [
           a.divider ? (v(), f("div", {
             key: 0,
             class: M(["smooth-item divider", Y(o, 0, !0)])
           }, X(a.text), 3)) : (v(!0), f(B, { key: 1 }, O(a.list, (r, D) => (v(), f("div", {
             key: D,
             class: M(["smooth-item", Y(o, D)]),
-            style: W(z(o, D))
+            style: Z(z(o, D))
           }, X(r.value || r), 7))), 128))
         ])
       ], 2))), 128)),
@@ -198,18 +201,18 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
       ]), 512)
     ]));
   }
-}), ae = (c, w) => {
+}), oe = (c, w) => {
   const y = c.__vccOpts || c;
   for (const [s, b] of w)
     y[s] = b;
   return y;
-}, oe = /* @__PURE__ */ ae(te, [["__scopeId", "data-v-1403f61c"]]), le = "1.0.0-beta.6", re = {
+}, A = /* @__PURE__ */ oe(ae, [["__scopeId", "data-v-59fb940b"]]), le = "1.0.1", re = {
   install: (c) => {
-    c.component("smooth-picker", oe);
+    c.component(A.name, A);
   }
 };
 export {
-  oe as SmoothPicker,
+  A as SmoothPicker,
   re as default,
   le as version
 };
