@@ -19,6 +19,10 @@ const pickerData = ref([
         currentIndex: 0
     },
     {
+        divider: true,
+        text: ':',
+    },
+    {
         list: Array.from({ length: 60 }, (_, i) => ({ value: i.toString().padStart(2, '0') })),
         currentIndex: 0
     }
