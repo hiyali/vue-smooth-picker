@@ -3,8 +3,8 @@
 🏄🏼 A smooth picker component for Vue 3.
 
 [![NPM downloads](http://img.shields.io/npm/dt/vue-smooth-picker.svg)](https://npmjs.org/package/vue-smooth-picker)
-![JS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/smooth-picker.js.svg?compression=gzip&label=gzip:%20JS)
-![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/css/style.css.svg?compression=gzip&label=gzip:%20CSS)
+![JS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/vue-smooth-picker.js.svg?compression=gzip&label=gzip:%20TS)
+![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/style.css.svg?compression=gzip&label=gzip:%20CSS)
 
 [![NPM Description](https://nodei.co/npm/vue-smooth-picker.png?downloads=true&stars=true)](https://npmjs.org/package/vue-smooth-picker)
 
