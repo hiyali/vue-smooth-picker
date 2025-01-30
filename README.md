@@ -100,7 +100,7 @@ interface PickerItem {
 
 ## V2 version (Deprecated / No longer maintained)
 
-> Looking for Vue 2 version? Check out [vue-smooth-picker for Vue 2](https://github.com/hiyali/vue-smooth-picker/tree/master)
+> Looking for Vue 2 version? Check out [vue-smooth-picker for Vue 2](https://github.com/hiyali/vue-smooth-picker/tree/vue2)
 
 ## License
 
