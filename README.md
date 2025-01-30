@@ -2,8 +2,6 @@
 
 A smooth picker component for Vue 3.
 
-> Looking for Vue 2 version? Check out [vue-smooth-picker for Vue 2](https://github.com/hiyali/vue-smooth-picker/tree/master)
-
 ## Features
 - 🎯 Vue 3 Support
 - 💪 TypeScript Support
@@ -11,17 +9,10 @@ A smooth picker component for Vue 3.
 - 📱 Touch-friendly
 - 🔄 Smooth animations
 
-## Demo (Deprecated / No longer maintained)
-
-Vue 2 version demos (Vue 3 demos coming soon):
-- [Product Picker](https://hiyali.github.io/vue-smooth-picker/example/product)
-- [Datetime Picker](https://hiyali.github.io/vue-smooth-picker/example/datetime)
-- [Gender Picker](https://hiyali.github.io/vue-smooth-picker/example/gender)
-
 ## Installation
 
 ```bash
-npm install vue-smooth-picker@3
+npm i -S vue-smooth-picker@next
 ```
 
 ## Usage
@@ -162,6 +153,15 @@ const timeData = ref([
 ])
 </script>
 ```
+
+## V2 version (Deprecated / No longer maintained)
+
+> Looking for Vue 2 version? Check out [vue-smooth-picker for Vue 2](https://github.com/hiyali/vue-smooth-picker/tree/master)
+
+### Demos
+- [Product Picker](https://hiyali.github.io/vue-smooth-picker/example/product)
+- [Datetime Picker](https://hiyali.github.io/vue-smooth-picker/example/datetime)
+- [Gender Picker](https://hiyali.github.io/vue-smooth-picker/example/gender)
 
 ## License
 
