@@ -1,6 +1,6 @@
 <template>
   <div class="example-page">
-    <smooth-picker ref="smoothPicker" :data="data" @onChange="dataChange" />
+    <smooth-picker ref="picker" :data="data" @onChange="dataChange" />
     <button class="button" type="button" @click="confirm">Confirm</button>
   </div>
 </template>
@@ -9,7 +9,7 @@
 import { ref } from 'vue'
 // import in app level & custom name version
 
-const smoothPicker = ref(null)
+const picker = ref(null)  // Warning: don't have smoothPicker var name in this file
 
 const dataChange = (gIndex, iIndex) => {
   console.info('list', gIndex, iIndex)
@@ -29,7 +29,7 @@ const dataChange = (gIndex, iIndex) => {
         list = ['1 * A item', '2 * A items', '3 * A items', '4 * A items', '5 * A items']
         currentIndex = 2
     }
-    smoothPicker.value.setGroupData(2, { ...data.value[2], currentIndex, list })
+    picker.value.setGroupData(2, { ...data.value[2], currentIndex, list })
   }
 }
 
@@ -72,7 +72,7 @@ const data = ref([
 ])
 
 const confirm = () => {
-  const ciList = smoothPicker.value.getCurrentIndexList()
+  const ciList = picker.value.getCurrentIndexList()
   const planDetail = data.value[0].list[ciList[0]]
   const productDetail = data.value[2].list[ciList[2]]
   window.alert(

@@ -1,6 +1,6 @@
 <template>
   <div class="example-page">
-    <SmoothPicker v-show="showPicker" ref="smoothPicker" :data="data" @onChange="dataChange" />
+    <smooth-picker v-show="showPicker" ref="picker" :data="data" @onChange="dataChange" />
     <button class="button" type="button" @click="confirm">Confirm</button>
     <button v-show="showWorkBtn" class="button" type="button" @click="init">Make it work</button>
   </div>
@@ -14,11 +14,11 @@ import 'vue-smooth-picker/style.css'
 console.warn('vue-smooth-picker version', version)
 
 const showPicker = ref(false)
-const smoothPicker = ref(null)
+const picker = ref(null)
 const showWorkBtn = ref(true)
 
 const clickOnGender = () => {
-  const ciList = smoothPicker.value.getCurrentIndexList()
+  const ciList = picker.value.getCurrentIndexList()
   window.alert('Clicked index: ' + ciList[0])
 }
 
@@ -38,12 +38,12 @@ const dataChange = (gIndex, iIndex) => {
 }
 
 const confirm = () => {
-  const ciList = smoothPicker.value.getCurrentIndexList()
+  const ciList = picker.value.getCurrentIndexList()
   window.alert('Selected: ' + data.value[0].list[ciList[0]])
 }
 
 const init = () => {
-  smoothPicker.value?.getGroupsRectList()
+  picker.value?.getGroupsRectList()
   showWorkBtn.value = false
 }
 

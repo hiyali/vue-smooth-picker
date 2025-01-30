@@ -4,7 +4,8 @@ import 'vue-smooth-picker/style.css'
 
 import App from './App.vue'
 
-console.warn('component name', SmoothPicker.name)
 console.warn('vue-smooth-picker version', version)
 
-createApp(App).mount('#app') 
+const app = createApp(App)
+app.component(SmoothPicker.name, SmoothPicker)
+app.mount('#app') 

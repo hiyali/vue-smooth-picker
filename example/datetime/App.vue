@@ -1,6 +1,6 @@
 <template>
   <div class="example-page">
-    <SmoothPicker ref="smoothPicker" :data="data" @onChange="dataChange" />
+    <smooth-picker ref="picker" :data="data" @onChange="dataChange" />
     <button class="button" type="button" @click="confirm">Confirm</button>
   </div>
 </template>
@@ -14,7 +14,7 @@ console.warn('vue-smooth-picker version', version)
 
 const nowYear = new Date().getFullYear()
 const years = Array.from({ length: nowYear - 1990 }, (_, i) => 1991 + i)
-const smoothPicker = ref(null)
+const picker = ref(null)
 
 const isLeapYear = (year) => {
   return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)
@@ -22,7 +22,7 @@ const isLeapYear = (year) => {
 
 const dataChange = (gIndex, iIndex) => {
   console.info('list', gIndex, iIndex)
-  const ciList = smoothPicker.value.getCurrentIndexList()
+  const ciList = picker.value.getCurrentIndexList()
 
   if (gIndex === 0 || gIndex === 1) { // year or month changed
     let currentIndex = 15
@@ -60,7 +60,7 @@ const dataChange = (gIndex, iIndex) => {
         currentIndex = 16
     }
     const list = Array.from({ length: monthCount }, (_, i) => i + 1)
-    smoothPicker.value.setGroupData(2, { ...data.value[2], ...{ currentIndex, list } })
+    picker.value.setGroupData(2, { ...data.value[2], ...{ currentIndex, list } })
   }
 }
 
@@ -94,7 +94,7 @@ const data = ref([
 ])
 
 const confirm = () => {
-  const ciList = smoothPicker.value.getCurrentIndexList()
+  const ciList = picker.value.getCurrentIndexList()
   const year = data.value[0].list[ciList[0]]
   const month = data.value[1].list[ciList[1]]
   const day = data.value[2].list[ciList[2]]
