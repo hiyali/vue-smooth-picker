@@ -1,16 +1,22 @@
 # vue-smooth-picker  <sup>[![Version Badge](http://versionbadg.es/hiyali/vue-smooth-picker.svg)](https://npmjs.com/package/vue-smooth-picker)</sup>
-🏄🏼 A SmoothPicker for Vue 2
+🏄🏼 A SmoothPicker for Vue 3
 
 [![npm package](https://img.shields.io/npm/v/vue-smooth-picker.svg)](https://npmjs.com/package/vue-smooth-picker)
-[![travis build](https://img.shields.io/travis/hiyali/vue-smooth-picker/master.svg)](https://travis-ci.org/hiyali/vue-smooth-picker)
 [![NPM downloads](http://img.shields.io/npm/dm/vue-smooth-picker.svg)](https://npmjs.org/package/vue-smooth-picker)
-![JS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/master/dist/smooth-picker.js.svg?compression=gzip&label=gzip%20size:%20JS)
-![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/master/dist/css/style.css.svg?compression=gzip&label=gzip%20size:%20CSS)
-[![CircleCI Status](https://circleci.com/gh/hiyali/vue-smooth-picker.svg?style=shield)](https://circleci.com/gh/hiyali/vue-smooth-picker)
+![JS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/vue-smooth-picker.js.svg?compression=gzip&label=gzip%20size:%20JS)
+![CJS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/vue-smooth-picker.js.svg?compression=gzip&label=gzip%20size:%20CJS)
+![CSS gzip size](http://img.badgesize.io/hiyali/vue-smooth-picker/gh-pages/dist/css/style.css.svg?compression=gzip&label=gzip%20size:%20CSS)
 
 [![NPM Description](https://nodei.co/npm/vue-smooth-picker.png?downloads=true&stars=true)](https://npmjs.org/package/vue-smooth-picker)
 
-> Let's more easily select some data on the touch screen device, such as time / city / gender / seat number / product / ...
+> Let's simplify selecting data on the touchscreen device, such as time, city, gender, seat number, product, etc.
+
+## Features
+- 🎯 Vue 3 Support
+- 💪 TypeScript Support
+- 🎨 Customizable styles
+- 📱 Touch-friendly
+- 🔄 Smooth animations
 
 ## Take a look
 
@@ -19,29 +25,39 @@ Demo links:
 | [Datetime](https://hiyali.github.io/vue-smooth-picker/example/datetime)
 | [Gender](https://hiyali.github.io/vue-smooth-picker/example/gender)
 
-## Install
+## Installation
 
-```shell
-npm i -S vue-smooth-picker
+```bash
+npm install vue-smooth-picker@next
 ```
 
 ## Usage
 
-> [English usage docs](https://github.com/hiyali/vue-smooth-picker/wiki/Usage)
+```vue
+<template>
+  <smooth-picker :data="pickerData" @onChange="handleChange" />
+</template>
 
-> [中文使用文档](https://github.com/hiyali/vue-smooth-picker/wiki/Usage_zh)
+<script setup>
+import { ref } from 'vue'
+import { SmoothPicker } from 'vue-smooth-picker'
+import 'vue-smooth-picker/style.css'
 
-### Quick look
+const pickerData = ref([
+  {
+    list: Array.from({ length: 24 }, (_, i) => ({ value: i.toString().padStart(2, '0') })),
+    currentIndex: 0
+  },
+  {
+    list: Array.from({ length: 60 }, (_, i) => ({ value: i.toString().padStart(2, '0') })),
+    currentIndex: 0
+  }
+])
 
-```javascript
-// import and use
-import 'vue-smooth-picker/dist/css/style.css'
-import SmoothPicker from 'vue-smooth-picker'
-Vue.use(SmoothPicker)
-...
-// in your template
-<smooth-picker ref="smoothPicker" :data="data" :change="change" />
-```
+const handleChange = (groupIndex, itemIndex) => {
+  console.log('Changed:', { groupIndex, itemIndex })
+}
+</script>
 
 ## props
 
@@ -71,7 +87,7 @@ Vue.use(SmoothPicker)
 > {exampleName} : product | datetime | gender ...
 
 ```shell
-npm run dev {exampleName} # dev
+npm run dev:{exampleName} # dev
 npm run build {exampleName} # build
 ```
 
@@ -79,11 +95,11 @@ npm run build {exampleName} # build
 
 > Please let me know.
 * [Open a new issue for this repo](https://github.com/hiyali/vue-smooth-picker/issues)
-* [Send a Email to: hiyali920@gmail.com](mailto:hiyali920@gmail.com)
+* [Send an Email to: hiyali920@gmail.com](mailto:hiyali920@gmail.com)
 
-## Donate
+## Like it?
 
-🌚 [A github star ⍟](https://github.com/hiyali/vue-smooth-picker)
+[Send a github star ⍟](https://github.com/hiyali/vue-smooth-picker)
 
 ## License
 
