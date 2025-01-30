@@ -1,6 +1,6 @@
 {
   "name": "vue-smooth-picker",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "type": "module",
   "description": "A smooth picker component for Vue 3",
   "author": "Salam Hiyali",
@@ -51,6 +51,7 @@
     "vue-smooth-picker",
     "Vue3",
     "picker",
+    "smooth-picker",
     "datetime picker",
     "vue3-component",
     "vue3-picker"

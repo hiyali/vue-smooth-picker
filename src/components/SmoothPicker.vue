@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+
+defineOptions({
+  name: "smooth-picker",
+  owner: "Salam Hiyali",
+  inheritAttrs: false
+})
+
 
 interface PickerItem {
   value: string | number
