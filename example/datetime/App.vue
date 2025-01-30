@@ -1,46 +1,19 @@
 <template>
   <div class="example-page">
-    <smooth-picker ref="smoothPicker" :data="data" @onChange="dataChange" />
+    <SmoothPicker ref="smoothPicker" :data="data" @onChange="dataChange" />
     <button class="button" type="button" @click="confirm">Confirm</button>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { SmoothPicker } from 'vue-smooth-picker'
+import { SmoothPicker, version } from 'vue-smooth-picker'  // import in specific place version
 import 'vue-smooth-picker/style.css'
 
-// import { version } from 'vue-smooth-picker'
-// console.warn('vue-smooth-picker version', version)
+console.warn('vue-smooth-picker version', version)
 
 const nowYear = new Date().getFullYear()
 const years = Array.from({ length: nowYear - 1990 }, (_, i) => 1991 + i)
-
-const data = ref([
-  {
-    currentIndex: Math.floor((nowYear - 1991) / 2),
-    flex: 3,
-    list: years,
-    textAlign: 'center',
-    className: 'row-group'
-  },
-  {
-    currentIndex: 8,
-    flex: 3,
-    list: Array.from({ length: 12 }, (_, i) => i + 1),
-    textAlign: 'center',
-    className: 'row-group'
-  },
-  {
-    currentIndex: 1,
-    flex: 3,
-    list: Array.from({ length: 30 }, (_, i) => i + 1),
-    onClick: clickOnDay,
-    textAlign: 'center',
-    className: 'item-group'
-  }
-])
-
 const smoothPicker = ref(null)
 
 const isLeapYear = (year) => {
@@ -94,6 +67,31 @@ const dataChange = (gIndex, iIndex) => {
 const clickOnDay = (gIndex, iIndex) => {
   window.alert('Clicked day: ' + data.value[gIndex].list[iIndex])
 }
+
+const data = ref([
+  {
+    currentIndex: Math.floor((nowYear - 1991) / 2),
+    flex: 3,
+    list: years,
+    textAlign: 'center',
+    className: 'row-group'
+  },
+  {
+    currentIndex: 8,
+    flex: 3,
+    list: Array.from({ length: 12 }, (_, i) => i + 1),
+    textAlign: 'center',
+    className: 'row-group'
+  },
+  {
+    currentIndex: 1,
+    flex: 3,
+    list: Array.from({ length: 30 }, (_, i) => i + 1),
+    onClick: clickOnDay,
+    textAlign: 'center',
+    className: 'item-group'
+  }
+])
 
 const confirm = () => {
   const ciList = smoothPicker.value.getCurrentIndexList()

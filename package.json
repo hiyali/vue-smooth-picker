@@ -1,6 +1,6 @@
 {
   "name": "vue-smooth-picker-example",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "Examples of a Vue 3 data picker that behaves like a native datetime picker",
   "scripts": {
     "dev:datetime": "vite --config vite.config.ts --mode datetime",
@@ -12,12 +12,12 @@
   "author": "Salam Hiyali",
   "dependencies": {
     "vue": "^3.0.0",
-    "vue-smooth-picker": "^1.0.0-beta.3"
+    "vue-smooth-picker": "^1.0.0-beta.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
-    "vite": "^5.0.12",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "vite": "^5.0.12"
   },
   "engines": {
     "node": ">= 6.0.0",

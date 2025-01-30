@@ -1,4 +1,4 @@
-import { defineComponent as J, ref as u, onMounted as K, nextTick as I, onBeforeUnmount as Q, openBlock as v, createElementBlock as f, Fragment as B, renderList as O, normalizeClass as M, createElementVNode as g, toDisplayString as X, normalizeStyle as W } from "vue";
+import { defineComponent as J, ref as u, onMounted as K, nextTick as S, onBeforeUnmount as Q, openBlock as v, createElementBlock as f, Fragment as B, renderList as O, normalizeClass as M, createElementVNode as g, toDisplayString as X, normalizeStyle as W } from "vue";
 const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te = /* @__PURE__ */ J({
   __name: "SmoothPicker",
   props: {
@@ -7,7 +7,7 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
     } }
   },
   emits: ["onChange"],
-  setup(c, { expose: L, emit: y }) {
+  setup(c, { expose: w, emit: y }) {
     const s = c, b = y, l = u(s.data.map((e) => {
       var a;
       const t = e.currentIndex;
@@ -18,17 +18,17 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
       isDragging: !1,
       groupIndex: null,
       startPageY: null
-    }), w = u([]), T = u([]), d = u(), P = u(null), C = u(null), i = () => {
-      T.value && (w.value = T.value.map((e) => e.getBoundingClientRect()));
+    }), _ = u([]), T = u([]), d = u(), E = u(null), C = u(null), i = () => {
+      T.value && (_.value = T.value.map((e) => e.getBoundingClientRect()));
     }, k = (e) => {
       e.cancelable && (e.preventDefault(), e.stopPropagation());
       const t = n.value.isTouchable ? e.touches[0] : e;
       n.value.startPageY = t.pageY, n.value.isTouchable || (n.value.isMouseDown = !0);
-    }, _ = (e) => {
+    }, x = (e) => {
       if (e.cancelable && (e.preventDefault(), e.stopPropagation()), n.value.isTouchable || n.value.isMouseDown) {
         n.value.isDragging = !0;
-        const t = E(e);
-        n.value.groupIndex === null && (n.value.groupIndex = G(e));
+        const t = G(e);
+        n.value.groupIndex === null && (n.value.groupIndex = P(e));
         const a = n.value.groupIndex;
         if (typeof a != "number" || s.data[a].divider || !s.data[a].list || !n.value.startPageY || !("pageY" in t))
           return;
@@ -37,8 +37,8 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
       }
     }, h = (e) => {
       e.cancelable && (e.preventDefault(), e.stopPropagation()), n.value.isDragging || F(e), n.value.isDragging = !1, n.value.isMouseDown = !1, R();
-    }, x = h, F = (e) => {
-      const t = G(e), a = e.target;
+    }, L = h, F = (e) => {
+      const t = P(e), a = e.target;
       if (typeof t == "number")
         switch (a.dataset.type) {
           case "top":
@@ -51,12 +51,12 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
             U(e, t);
             break;
         }
-    }, E = (e) => n.value.isTouchable ? e.changedTouches[0] || e.touches[0] : e, G = (e) => {
-      const t = E(e);
+    }, G = (e) => n.value.isTouchable ? e.changedTouches[0] || e.touches[0] : e, P = (e) => {
+      const t = G(e);
       if (!("pageX" in t))
         return null;
-      for (let a = 0; a < w.value.length; a++) {
-        const o = w.value[a];
+      for (let a = 0; a < _.value.length; a++) {
+        const o = _.value[a];
         if (o.left < t.pageX && t.pageX < o.right)
           return a;
       }
@@ -79,7 +79,7 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
     }, A = (e) => {
       const t = s.data[e], o = ["flex-" + (t.flex || 1)];
       return t.className && o.push(t.className), o;
-    }, S = (e, t, a = !1) => {
+    }, Y = (e, t, a = !1) => {
       const o = [], r = s.data[e];
       return r.textAlign && o.push("text-" + r.textAlign), !a && l.value[e] === t && o.push("smooth-item-selected"), o;
     }, N = (e) => {
@@ -87,13 +87,13 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
       typeof e == "number" && typeof t[e].onClick == "function" && t[e].onClick(e, l.value[e]);
     }, j = (e, t) => {
       const a = l.value[t] + 1;
-      l.value[t] = a, Y(e, t);
+      l.value[t] = a, I(e, t);
     }, H = (e, t) => {
       N(t);
     }, U = (e, t) => {
       const a = l.value[t] - 1;
-      l.value[t] = a, Y(e, t);
-    }, Y = (e, t) => {
+      l.value[t] = a, I(e, t);
+    }, I = (e, t) => {
       setTimeout(() => {
         if (!(typeof t != "number" || !s.data[t] || !s.data[t].list) && s.data[t].divider !== !0 && s.data[t].list.length > 0) {
           const a = l.value[t];
@@ -115,26 +115,26 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
       e.forEach((t) => {
         if (t.type === "attributes") {
           const o = t.target.style.display;
-          o !== "none" && P.value !== o && (P.value = o, I(i));
+          o !== "none" && E.value !== o && (E.value = o, S(i));
         }
       });
     });
-    return L({
+    return w({
       setGroupData: V,
       getCurrentIndexList: () => l.value,
       getGroupsRectList: i
     }), K(() => {
-      if (i(), I(i), C.value = q(), C.value.observe(d.value, { attributes: !0 }), window.addEventListener("resize", i), d.value) {
+      if (i(), S(i), C.value = q(), C.value.observe(d.value, { attributes: !0 }), window.addEventListener("resize", i), d.value) {
         const e = n.value.isTouchable ? {
           touchstart: k,
-          touchmove: _,
+          touchmove: x,
           touchend: h,
-          touchcancel: x
+          touchcancel: L
         } : {
           mousedown: k,
-          mousemove: _,
+          mousemove: x,
           mouseup: h,
-          mouseleave: x
+          mouseleave: L
         };
         Object.entries(e).forEach(([t, a]) => {
           var o;
@@ -145,14 +145,14 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
       if (p.value !== null && clearTimeout(p.value), C.value && C.value.disconnect(), window.removeEventListener("resize", i), d.value) {
         const e = n.value.isTouchable ? {
           touchstart: k,
-          touchmove: _,
+          touchmove: x,
           touchend: h,
-          touchcancel: x
+          touchcancel: L
         } : {
           mousedown: k,
-          mousemove: _,
+          mousemove: x,
           mouseup: h,
-          mouseleave: x
+          mouseleave: L
         };
         Object.entries(e).forEach(([t, a]) => {
           var o;
@@ -170,10 +170,10 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
         g("div", ee, [
           a.divider ? (v(), f("div", {
             key: 0,
-            class: M(["smooth-item divider", S(o, 0, !0)])
+            class: M(["smooth-item divider", Y(o, 0, !0)])
           }, X(a.text), 3)) : (v(!0), f(B, { key: 1 }, O(a.list, (r, D) => (v(), f("div", {
             key: D,
-            class: M(["smooth-item", S(o, D)]),
+            class: M(["smooth-item", Y(o, D)]),
             style: W(z(o, D))
           }, X(r.value || r), 7))), 128))
         ])
@@ -198,18 +198,18 @@ const Z = { class: "smooth-picker flex-box" }, ee = { class: "smooth-list" }, te
       ]), 512)
     ]));
   }
-});
-const ae = (c, L) => {
+}), ae = (c, w) => {
   const y = c.__vccOpts || c;
-  for (const [s, b] of L)
+  for (const [s, b] of w)
     y[s] = b;
   return y;
-}, oe = /* @__PURE__ */ ae(te, [["__scopeId", "data-v-1403f61c"]]), le = {
+}, oe = /* @__PURE__ */ ae(te, [["__scopeId", "data-v-1403f61c"]]), le = "1.0.0-beta.6", re = {
   install: (c) => {
-    c.component("SmoothPicker", oe);
+    c.component("smooth-picker", oe);
   }
 };
 export {
   oe as SmoothPicker,
-  le as default
+  re as default,
+  le as version
 };

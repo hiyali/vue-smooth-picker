@@ -2,19 +2,20 @@
   <div class="example-page">
     <SmoothPicker v-show="showPicker" ref="smoothPicker" :data="data" @onChange="dataChange" />
     <button class="button" type="button" @click="confirm">Confirm</button>
+    <button v-show="showWorkBtn" class="button" type="button" @click="init">Make it work</button>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { SmoothPicker } from 'vue-smooth-picker'
+import { SmoothPicker, version } from 'vue-smooth-picker'  // import in specific place version
 import 'vue-smooth-picker/style.css'
 
-// import { version } from 'vue-smooth-picker'
-// console.warn('vue-smooth-picker version', version)
+console.warn('vue-smooth-picker version', version)
 
 const showPicker = ref(false)
 const smoothPicker = ref(null)
+const showWorkBtn = ref(true)
 
 const clickOnGender = () => {
   const ciList = smoothPicker.value.getCurrentIndexList()
@@ -41,6 +42,11 @@ const confirm = () => {
   window.alert('Selected: ' + data.value[0].list[ciList[0]])
 }
 
+const init = () => {
+  smoothPicker.value?.getGroupsRectList()
+  showWorkBtn.value = false
+}
+
 onMounted(() => {
   setTimeout(() => {
     showPicker.value = true
@@ -52,7 +58,7 @@ onMounted(() => {
   body
     background-color: #f0f0f0
     .button
-      margin 10px 0 0
+      margin 10px 0 0 10px
       background-color black
       color white
       padding 5px
