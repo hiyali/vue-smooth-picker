@@ -1,7 +1,7 @@
 import { App } from 'vue'
 import SmoothPicker from './components/SmoothPicker.vue'
 
-const version = "1.0.0-beta.7"
+const version = "1.0.1"
 export { SmoothPicker, version }
 
 export default {

@@ -1,6 +1,6 @@
 {
   "name": "vue-smooth-picker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "A smooth picker component for Vue 3",
   "author": "Salam Hiyali",
