@@ -10,22 +10,15 @@
 
 > Let's simplify selecting data on the touchscreen device, such as time, city, gender, seat number, product, etc.
 
-## Features
-- 🎯 Vue 3 Support
-- 💪 TypeScript Support
-- 🎨 Customizable styles
-- 📱 Touch-friendly
-- 🔄 Smooth animations
-
 ## Installation
 
 ```bash
 npm i -S vue-smooth-picker
 ```
 
-### Examples
+### Demo
 
-| Demo           | Complexity      | Code      |
+| Name           | Complexity      | Code      |
 | -------------- | --------------- | --------- |
 | [Product](https://hiyali.github.io/vue-smooth-picker/pages/example/product/) | ⭐⭐⭐ | [Link](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/product) |
 | [Datetime](https://hiyali.github.io/vue-smooth-picker/pages/example/datetime/) | ⭐⭐ | [Link](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/datetime) |
@@ -37,7 +30,7 @@ npm i -S vue-smooth-picker
 
 ## Usage
 
-```vue
+```typescript
 <template>
   <smooth-picker :data="pickerData" @onChange="handleChange" />
 </template>
@@ -96,6 +89,13 @@ interface PickerItem {
 | `setGroupData`             | `(groupIndex: number, groupData: PickerGroup) => void` | Dynamically updates the data for a specific group, allowing for real-time changes to the picker. |
 | `getCurrentIndexList`      | `() => number[]`                                      | Returns an array of the current index for each group, reflecting the selected items.           |
 | `getGroupsRectList`        | `() => void`                                          | Updates the dimensions of the groups, which is useful for gesture handling. Call this method when the component's visibility changes. |
+
+## Features
+- 🎯 Vue 3 Support
+- 💪 TypeScript Support
+- 🎨 Customizable styles
+- 📱 Touch-friendly
+- 🔄 Smooth animations
 
 ## Vue 2 version (No longer maintained)
 
