@@ -100,6 +100,18 @@ interface PickerItem {
 - 📱 Touch-friendly
 - 🔄 Smooth animations
 
+## Contributors
+<div style="display: flex; gap: 20px;">
+  <a href="https://github.com/hiyali" style="text-align: center;">
+    <img src="https://avatars.githubusercontent.com/u/8447900?v=4" alt="Salam Hiyali" style="border-radius: 50%; width: 60px; height: 60px;">
+    <div>Salam Hiyali</div>
+  </a>
+  <a href="https://github.com/action-hong" style="text-align: center;">
+    <img src="https://avatars.githubusercontent.com/u/16460309?v=4" alt="kkopitehong" style="border-radius: 50%; width: 60px; height: 60px;">
+    <div>kkopitehong</div>
+  </a>
+</div>
+
 ## Vue 2 version (No longer maintained)
 
 > Looking for Vue 2 version? Check out [vue-smooth-picker for Vue 2](https://github.com/hiyali/vue-smooth-picker/tree/vue2)
