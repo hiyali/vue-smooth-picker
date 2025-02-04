@@ -1,6 +1,8 @@
 node_modules
-*.log
 dist
+package-lock.json
+*.log
+*.lock
 
 .idea
 .vscode

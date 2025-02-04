@@ -1,4 +1,4 @@
-# vue-smooth-picker
+# vue-smooth-picker    <sup>[![Version Badge](http://versionbadg.es/hiyali/vue-smooth-picker.svg)](https://npmjs.com/package/vue-smooth-picker)</sup>
 
 🏄🏼 A smooth picker component for Vue 3.
 
@@ -10,25 +10,19 @@
 
 > Let's simplify selecting data on the touchscreen device, such as time, city, gender, seat number, product, etc.
 
-## Installation
+![Screen shot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screenshot.png "screenshot")
+![Screen record](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screen-record.gif "screen record")
+
+
+## Usage
+
+### Install
 
 ```bash
 npm i -S vue-smooth-picker
 ```
 
-### Demo
-
-| Name           | Complexity      | Code      |
-| -------------- | --------------- | --------- |
-| [Product](https://hiyali.github.io/vue-smooth-picker/pages/example/product/) | ⭐⭐⭐ | [Link](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/product) |
-| [Datetime](https://hiyali.github.io/vue-smooth-picker/pages/example/datetime/) | ⭐⭐ | [Link](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/datetime) |
-| [Gender](https://hiyali.github.io/vue-smooth-picker/pages/example/gender/) | ⭐ | [Link](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/product) |
-
-
-![Screen shot](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screenshot.png "screenshot")
-![Screen record](https://raw.githubusercontent.com/hiyali/vue-smooth-picker/gh-pages/assets/smooth-picker-screen-record.gif "screen record")
-
-## Usage
+### Quick look
 
 ```typescript
 <template>
@@ -56,6 +50,15 @@ const handleChange = (groupIndex, itemIndex) => {
 }
 </script>
 ```
+
+### Demo
+
+| Name           | Complexity      | Code      |
+| -------------- | --------------- | --------- |
+| [Product](https://hiyali.github.io/vue-smooth-picker/pages/example/product/) | ⭐⭐⭐ | [Link](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/product) |
+| [Datetime](https://hiyali.github.io/vue-smooth-picker/pages/example/datetime/) | ⭐⭐ | [Link](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/datetime) |
+| [Gender](https://hiyali.github.io/vue-smooth-picker/pages/example/gender/) | ⭐ | [Link](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/product) |
+
 
 ### Data Structure
 
