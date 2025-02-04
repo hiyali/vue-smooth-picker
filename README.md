@@ -25,8 +25,8 @@ npm i -S vue-smooth-picker
 
 ### Examples
 
-| Demo | Star | Code |
-| --- | --- | --- |
+| Demo           | Complexity      | Code      |
+| -------------- | --------------- | --------- |
 | [Product](https://hiyali.github.io/vue-smooth-picker/pages/example/product/) | ⭐⭐⭐ | [Link](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/product) |
 | [Datetime](https://hiyali.github.io/vue-smooth-picker/pages/example/datetime/) | ⭐⭐ | [Link](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/datetime) |
 | [Gender](https://hiyali.github.io/vue-smooth-picker/pages/example/gender/) | ⭐ | [Link](https://github.com/hiyali/vue-smooth-picker/tree/gh-pages/example/product) |
@@ -73,32 +73,31 @@ interface Props {
 }
 
 interface PickerGroup {
-  list?: PickerItem[]
-  divider?: boolean
-  text?: string
-  flex?: number
-  className?: string
-  textAlign?: string
-  currentIndex?: number
-  onClick?: (groupIndex: number, itemIndex: number) => void
+  list?: PickerItem[] // List of items in this group
+  divider?: boolean // Indicates if this is a divider, default is false
+  text?: string // Text used when divider is true
+  flex?: number // Weight of the group in the parent container, range from 1 to 12
+  className?: string // Custom class name
+  textAlign?: string // Text alignment for items, can be 'left', 'center', or 'right'
+  currentIndex?: number // Current index of the selected item, default is 0
+  onClick?: (groupIndex: number, itemIndex: number) => void // Click event handler
 }
 
 interface PickerItem {
-  value: string | number
-  [key: string]: any
+  value: string | number // The value of the item, can be a string or a number
+  [key: string]: any // Other optional properties
 }
 ```
 
-## Instance Methods
+### Instance Methods
 
-| Name | Type | Description |
-|------|------|-------------|
-| setGroupData | (groupIndex: number, groupData: PickerGroup) => void | Dynamically set a group's data |
-| getCurrentIndexList | () => number[] | Get current index list of all groups |
-| getGroupsRectList | () => void | Update groups rect list, call this when component visibility changes |
+| Name       | Type       | Description        |
+| ---------- | ---------- | ------------------ |
+| `setGroupData`             | `(groupIndex: number, groupData: PickerGroup) => void` | Dynamically updates the data for a specific group, allowing for real-time changes to the picker. |
+| `getCurrentIndexList`      | `() => number[]`                                      | Returns an array of the current index for each group, reflecting the selected items.           |
+| `getGroupsRectList`        | `() => void`                                          | Updates the dimensions of the groups, which is useful for gesture handling. Call this method when the component's visibility changes. |
 
-
-## V2 version (Deprecated / No longer maintained)
+## Vue 2 version (No longer maintained)
 
 > Looking for Vue 2 version? Check out [vue-smooth-picker for Vue 2](https://github.com/hiyali/vue-smooth-picker/tree/vue2)
 
